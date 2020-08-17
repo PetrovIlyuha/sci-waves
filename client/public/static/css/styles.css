@@ -1,0 +1,113 @@
+.customNav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 100;
+  width: 100vw;
+  height: 75px;
+  left: 0px;
+  top: 0px;
+
+  background: conic-gradient(
+      from 166.92deg at 21.42% 120.89%,
+      #ffffff 0deg,
+      rgba(255, 255, 255, 0) 360deg
+    ),
+    conic-gradient(
+      from 185.59deg at 55.94% -51.27%,
+      rgba(255, 255, 255, 0) 0deg,
+      #ffffff 117.65deg,
+      rgba(255, 255, 255, 0) 360deg
+    ),
+    url("../header-bg.jpg");
+  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.3);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.homeLink {
+  position: absolute;
+  width: 131px;
+  height: 66px;
+  margin-left: 10px;
+  left: 0;
+  top: 0;
+}
+
+.login__menu {
+  display: flex;
+  width: 100px;
+  justify-content: space-between;
+  margin-right: 30px;
+}
+
+/* container */
+.customContainer {
+  margin-top: 40px;
+}
+
+.register__page_layout {
+  display: flex;
+  flex-direction: row;
+  margin-top: 150px;
+}
+
+.register-page-person {
+  background: url("../register-form-bg.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 100px !important;
+}
+
+.register-overlay {
+  background: url("../forms-bg.jpg") no-repeat center center;
+  background-size: cover;
+  padding: 10px 10px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.register-overlay label {
+  color: rgb(186, 240, 161);
+}
+
+.form-group {
+  margin-top: 30px;
+}
+
+.register-overlay button {
+  padding: 10px;
+  text-align: center;
+  margin: 0 auto;
+  background: linear-gradient(91.96deg, #3913b8 0%, #ba75ff 100%);
+  box-shadow: 0px 20px 40px rgba(113, 62, 215, 0.3);
+  color: #20e49f;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+}
+
+.register-overlay button:hover {
+  background: #1719aa;
+  color: #60ee73;
+  border: none;
+  box-shadow: 0px 20px 40px rgba(113, 62, 215, 0.3);
+}
+
+.register-overlay input {
+  background: #1a2151;
+  color: whitesmoke;
+}
+
+.register-overlay input:hover,
+.register-overlay input:active {
+  color: whitesmoke;
+  background: #1a2151;
+}
+
+.register-overlay:hover {
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
+}
