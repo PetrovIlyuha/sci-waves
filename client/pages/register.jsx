@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import Layout from "../components/Layout";
 
 const Register = () => {
@@ -23,17 +24,19 @@ const Register = () => {
     });
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    fetch("http://localhost:4000/api/register")
-      .then((data) => data.json())
-      .then((data) => console.log(data));
-    console.log(name, email, password);
+    const response = await axios.post(`http://localhost:4000/api/register`, {
+      name,
+      email,
+      password,
+    });
+    console.log(response);
   };
 
-  console.log(formState);
   const registerForm = () => (
     <form onSubmit={handleFormSubmit}>
+      <h2>Register</h2>
       <div className="form-group">
         <label htmlFor="name">Username</label>
         <input
@@ -79,7 +82,6 @@ const Register = () => {
       <div className="register__page_layout">
         <div className="shapes__register"></div>
         <div className="cloud__register"></div>
-        {/* <div className="register-page-person col-md-6 mt-5"></div> */}
         <div className="register-overlay col-md-6 offset-3 mt-5">
           {registerForm()}
         </div>
