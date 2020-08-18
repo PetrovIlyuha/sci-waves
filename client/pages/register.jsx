@@ -25,6 +25,9 @@ const Register = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    fetch("http://localhost:4000/api/register")
+      .then((data) => data.json())
+      .then((data) => console.log(data));
     console.log(name, email, password);
   };
 
@@ -74,8 +77,12 @@ const Register = () => {
   return (
     <Layout>
       <div className="register__page_layout">
-        <div className="register-page-person col-md-6 mt-5"></div>
-        <div className="register-overlay col-md-6 mt-5">{registerForm()}</div>
+        <div className="shapes__register"></div>
+        <div className="cloud__register"></div>
+        {/* <div className="register-page-person col-md-6 mt-5"></div> */}
+        <div className="register-overlay col-md-6 offset-3 mt-5">
+          {registerForm()}
+        </div>
       </div>
     </Layout>
   );
