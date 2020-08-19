@@ -39,11 +39,11 @@ const Layout = ({ children }) => {
     </ul>
   );
   return (
-    <>
+    <div className="overall__layout-styles">
       {Head()}
       {navBar()}
       <div className="container customContainer pt-5 pb-5">{children}</div>
-    </>
+    </div>
   );
 };
 
