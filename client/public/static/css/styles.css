@@ -1,3 +1,9 @@
+.overall__layout-styles {
+  background-color: beige;
+  height: calc(100vh - 75px);
+  margin-top: 75px;
+}
+
 .customNav {
   display: flex;
   flex-direction: row;
@@ -93,14 +99,14 @@
 }
 
 .cloud__register {
-  background: url("../cloud_red_shape.png");
-  width: 100%;
+  background: url("../blue_folders.png");
+  width: 1400px;
   height: 100%;
   object-fit: contain;
   position: absolute;
-  top: 0;
+  margin-top: -400px;
+  margin-right: -500px;
   right: 0;
-  transform: rotateY(180deg);
   background-repeat: no-repeat;
   z-index: 4;
 }
