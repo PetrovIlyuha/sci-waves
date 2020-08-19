@@ -1,5 +1,7 @@
 const User = require("../models/User");
 const AWS = require("aws-sdk");
+const jwt = require("jsonwebtoken");
+const { registerEmailParams } = require("../utils/helperFunctions");
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -9,45 +11,36 @@ AWS.config.update({
 
 const ses = new AWS.SES({ apiVersion: "2010-12-01" });
 
-exports.register = (req, res) => {
-  // console.log("REGISTER ENDPOINT", req.body);
+exports.register = async (req, res) => {
   const { name, email, password } = req.body;
-  const params = {
-    Source: process.env.EMAIL_FROM,
-    Destination: {
-      ToAddresses: [email],
-    },
-    ReplyToAddresses: [process.env.EMAIL_TO],
-    Message: {
-      Body: {
-        Html: {
-          Charset: "UTF-8",
-          Data: `
-            <html>
-              <body>
-              <h2 style="color: blue">Hello, ${name}</h2>
-              <p>Test SES from Amazon</p>
-              </body>
-            </html>
-          `,
-        },
-      },
-      Subject: {
-        Charset: "UTF-8",
-        Data: "Finish your registration",
-      },
-    },
-  };
+  // check for existing user
+  await User.findOne({ email }).exec((err, user) => {
+    if (user) {
+      return res.status(400).json({
+        error: "Provided email was taken",
+      });
+    }
+    // generating token from username, email and password
+    const token = jwt.sign(
+      { name, email, password },
+      process.env.JWT_ACCOUNT_ACTIVATION_KEY,
+      { expiresIn: "1h" }
+    );
+    const params = registerEmailParams(email, name, token);
+    const sendEmailOnRegistration = ses.sendEmail(params).promise();
 
-  const sendEmailOnRegistration = ses.sendEmail(params).promise();
-
-  sendEmailOnRegistration
-    .then((data) => {
-      console.log(data);
-      res.send("Email was sent to your inbox!");
-    })
-    .catch((err) => {
-      console.log(`AWS SES error: ${err}`);
-      res.send(`Email sending process have failed!`);
-    });
+    sendEmailOnRegistration
+      .then((data) => {
+        console.log("email sending success", data);
+        res.json({
+          message: `Confirmation Email was sent to ${email}!`,
+        });
+      })
+      .catch((err) => {
+        console.log(`AWS SES error: ${err}`);
+        res.json({
+          message: `We could not verify your email! Please, try again later!`,
+        });
+      });
+  });
 };
