@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Layout from "../components/Layout";
+import { ToastContainer, toast, Flip } from "react-toastify";
+import { API } from "../config.js";
 
 const Register = () => {
   const [formState, setFormState] = useState({
@@ -14,6 +16,33 @@ const Register = () => {
 
   const { name, email, password, error, success, buttonText } = formState;
 
+  useEffect(() => {
+    {
+      success &&
+        toast.success(`${success}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+    }
+    {
+      error &&
+        toast.error(`${error}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+    }
+  }, [success, error]);
+
   const handleFormInputChange = (name) => (e) => {
     setFormState({
       ...formState,
@@ -25,15 +54,27 @@ const Register = () => {
   };
 
   const handleFormSubmit = async (e) => {
+    setFormState({ ...formState, buttonText: "Sending!" });
     e.preventDefault();
-    const response = await axios.post(`http://localhost:4000/api/register`, {
-      name,
-      email,
-      password,
-    });
-    console.log(response);
+    try {
+      const response = await axios.post(`${API}/register`, {
+        name,
+        email,
+        password,
+      });
+      setFormState({
+        ...formState,
+        name: "",
+        email: "",
+        password: "",
+        buttonText: "Submitted",
+        success: response.data.message,
+      });
+    } catch (error) {
+      console.log(error);
+      setFormState({ ...formState, error: error.response.data.error });
+    }
   };
-
   const registerForm = () => (
     <form onSubmit={handleFormSubmit}>
       <h2>Register</h2>
@@ -80,11 +121,11 @@ const Register = () => {
   return (
     <Layout>
       <div className="register__page_layout">
-        <div className="shapes__register"></div>
         <div className="cloud__register"></div>
         <div className="register-overlay col-md-6 offset-3 mt-5">
           {registerForm()}
         </div>
+        <ToastContainer />
       </div>
     </Layout>
   );
