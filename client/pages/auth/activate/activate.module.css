@@ -1,0 +1,65 @@
+.activatePageLayout {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 500px;
+  justify-content: center;
+  margin-right: 100px;
+  margin-top: 100px;
+  z-index: 100;
+}
+
+.activateBackground {
+  position: absolute;
+  margin-top: -200px;
+  top: 0;
+  right: 0;
+  margin-right: -370px;
+  z-index: 0;
+  transform: scaleY(1.2);
+}
+
+.activatePageLayout h1,
+.activatePageLayout h2,
+.activatePageLayout h3 {
+  text-align: center;
+  color: #fff7f7;
+}
+
+.activatePageLayout button {
+  text-align: center;
+  margin: auto;
+}
+
+.activationForm {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 30px;
+  padding: 20px 40px;
+  box-shadow: 4px 5px 14px -3px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.activationBtn {
+  padding: 15px 12px;
+  background: linear-gradient(91.96deg, #3913b8 0%, #ba75ff 100%);
+  box-shadow: 0px 20px 40px rgba(113, 62, 215, 0.3);
+  border-radius: 10px !important;
+  border: 2px solid rgb(55, 19, 102) !important;
+  font-weight: bold !important;
+  color: white;
+}
+
+.activationBtn:hover,
+.activationBtn:active {
+  background: linear-gradient(
+    91.96deg,
+    #4fc2f9 0%,
+    rgba(144, 219, 255, 0.6) 100%
+  );
+  font-weight: bold !important;
+  color: #3f3f3f;
+}
