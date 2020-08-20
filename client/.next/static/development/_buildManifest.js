@@ -1,1 +1,1 @@
-self.__BUILD_MANIFEST = {"/_error":["static\u002Fchunks\u002Fpages\u002F_error.js"],"/register":["static\u002Fchunks\u002Fpages\u002Fregister.js"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
+self.__BUILD_MANIFEST = {"/_error":["static\u002Fchunks\u002Fpages\u002F_error.js"],"/auth/activate/[token]":["static\u002Fchunks\u002Fpages\u002Fauth\u002Factivate\u002F[token].js"],"/login":["static\u002Fchunks\u002Fpages\u002Flogin.js"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
