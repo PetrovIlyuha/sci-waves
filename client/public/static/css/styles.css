@@ -1,6 +1,7 @@
 .overall__layout-styles {
-  background-color: beige;
-  height: calc(100vh - 75px);
+  background: url("../Landscape05.jpg") no-repeat center center;
+  background-size: cover;
+  height: calc(100vh - 92px);
   margin-top: 75px;
 }
 
@@ -52,15 +53,6 @@
 /* container */
 .customContainer {
   margin-top: 40px;
-}
-
-.register__page_layout {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-right: 100px;
-  margin-top: 100px;
 }
 
 .register-page-person {
