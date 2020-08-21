@@ -120,13 +120,11 @@ const Register = () => {
 
   return (
     <Layout>
-      <div className="register__page_layout">
-        <div className="cloud__register"></div>
-        <div className="register-overlay col-md-6 offset-3 mt-5">
-          {registerForm()}
-        </div>
-        <ToastContainer />
+      <div className="cloud__register"></div>
+      <div className="register-overlay col-md-6 offset-3 mt-5">
+        {registerForm()}
       </div>
+      <ToastContainer />
     </Layout>
   );
 };
