@@ -12,16 +12,59 @@
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   margin-right: 100px;
   margin-top: 100px;
-  z-index: 100;
 }
 
 .loginForm {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  background: url("../public/static/forms-bg.jpg") no-repeat center center;
+  background-size: cover;
+  padding: 30px 50px;
+  border-radius: 10px;
+  padding: 20 40px;
+  min-height: 200px;
+  box-shadow: 2px 4px 12px rgba(255, 255, 255, 1);
+  transition: all 0.3s ease;
+  z-index: 20;
+  text-align: center;
+  color: beige;
+}
+
+.loginForm input {
+  margin-top: 30px;
+  background: #1a2151;
+  color: whitesmoke;
+}
+
+.loginForm input:hover,
+.loginForm input:active {
+  color: whitesmoke;
+  background: #1a2151;
+}
+
+.loginForm > button {
+  padding: 10px;
+  text-align: center;
+  margin: 0 auto;
+  background: linear-gradient(91.96deg, #3913b8 0%, #ba75ff 100%);
+  box-shadow: 0px 20px 40px rgba(113, 62, 215, 0.3);
+  color: #20e49f;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+}
+
+.loginForm > button:hover {
+  background: #1719aa;
+  color: #60ee73;
+  border: none;
+  box-shadow: 0px 20px 40px rgba(113, 62, 215, 0.3);
+}
+
+.loginForm:hover {
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
 }
