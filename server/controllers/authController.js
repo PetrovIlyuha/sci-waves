@@ -80,3 +80,27 @@ exports.registerActivate = (req, res) => {
     });
   });
 };
+
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
+  await User.findOne({ email }).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "User with that email does not exist...Please, register!",
+      });
+    }
+    if (!user.authenticate(password)) {
+      return res.status(400).json({
+        error: "Password does not match with the registered One!!",
+      });
+    }
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+    const { _id, name, email, role } = user;
+    return res.json({
+      token,
+      user: { _id, name, email, role },
+    });
+  });
+};
