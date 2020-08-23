@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Link from "next/link";
-import Router from "next/router";
+import { useState, useEffect } from "react"
+import axios from "axios"
+import Link from "next/link"
+import Router from "next/router"
 
-import { ToastContainer, toast } from "react-toastify";
-import { API } from "../config.js";
-import Layout from "../components/Layout";
-import LoginBack from "../components/backgrounds/LoginBack";
-import classes from "./login.module.css";
+import { ToastContainer, toast } from "react-toastify"
+import LoginBack from "../components/backgrounds/LoginBack"
+import { API } from "../config.js"
+import Layout from "../components/Layout"
+import classes from "./login.module.css"
+import { authenticateUser, isUserAuthenticated } from "../utils/helpers"
 
 const Login = () => {
   const [formState, setFormState] = useState({
@@ -16,9 +17,9 @@ const Login = () => {
     error: "",
     success: "",
     buttonText: "Login",
-  });
+  })
 
-  const { email, password, error, success, buttonText } = formState;
+  const { email, password, error, success, buttonText } = formState
 
   useEffect(() => {
     {
@@ -31,7 +32,7 @@ const Login = () => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        });
+        })
     }
     {
       error &&
@@ -43,9 +44,13 @@ const Login = () => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        });
+        })
     }
-  }, [success, error]);
+  }, [success, error])
+
+  useEffect(() => {
+    isUserAuthenticated() && Router.push("/")
+  }, [])
 
   const handleFormInputChange = (name) => (e) => {
     setFormState({
@@ -53,61 +58,61 @@ const Login = () => {
       [name]: e.target.value,
       error: "",
       success: "",
-    });
-  };
+    })
+  }
 
   const handleFormSubmit = async (e) => {
-    setFormState({ ...formState, buttonText: "Logging in!" });
-    e.preventDefault();
+    setFormState({ ...formState, buttonText: "Logging in!" })
+    e.preventDefault()
     try {
       const response = await axios.post(`${API}/login`, {
         email,
         password,
-      });
+      })
+      authenticateUser(response, () => Router.push("/"))
       setFormState({
         ...formState,
         success: "You Are Logged In",
         buttonText: "Welcome!",
-      });
-      console.log(response);
+      })
     } catch (error) {
-      console.log(error);
+      console.log(error)
       setFormState({
         ...formState,
         buttonText: "Login",
         error: error.response.data.error,
-      });
+      })
     }
-  };
+  }
 
   return (
     <Layout>
-      <LoginBack className={classes.loginBG} />
+      <LoginBack className={classes.shape_login} />
       <div className={classes.loginLayout}>
         <form onSubmit={handleFormSubmit} className={classes.loginForm}>
           <h2>Login Here</h2>
           <input
             value={email}
             onChange={handleFormInputChange("email")}
-            type="email"
-            className="form-control"
-            name="email"
+            type='email'
+            className='form-control'
+            name='email'
           />
           <input
             value={password}
             onChange={handleFormInputChange("password")}
-            type="password"
-            className="form-control"
-            name="password"
+            type='password'
+            className='form-control'
+            name='password'
           />
-          <button className="btn mx-auto mt-4 btn-outline-warning">
+          <button className='btn mx-auto mt-4 btn-outline-warning'>
             {buttonText}
           </button>
         </form>
       </div>
       <ToastContainer />
     </Layout>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

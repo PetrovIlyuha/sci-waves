@@ -1,7 +1,32 @@
-import Layout from "../components/Layout";
+import Layout from "../components/Layout"
+import { ToastContainer, toast } from "react-toastify"
+import { useEffect, useState } from "react"
+import { isUserAuthenticated } from "../utils/helpers"
 
 const Home = () => {
-  return <Layout>Home Page</Layout>;
-};
+  // const [isFirstVisit, setIsFirstVisit] = useState(true)
+  // useEffect(() => {
+  //   if (isFirstVisit) {
+  //     isUserAuthenticated() &&
+  //       toast.success(`Take a look around & have a nice search!`, {
+  //         position: "top-right",
+  //         autoClose: 5000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //       })
+  //   }
+  //   setIsFirstVisit(false)
+  // }, [])
+  // console.log(isFirstVisit)
+  return (
+    <Layout>
+      <h3>Home Page</h3>
+      <ToastContainer />
+    </Layout>
+  )
+}
 
-export default Home;
+export default Home
