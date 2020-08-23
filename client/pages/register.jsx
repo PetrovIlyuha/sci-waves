@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Layout from "../components/Layout";
-import { ToastContainer, toast } from "react-toastify";
-import { API } from "../config.js";
+import { useState, useEffect } from "react"
+import axios from "axios"
+import Layout from "../components/Layout"
+import { ToastContainer, toast } from "react-toastify"
+import { API } from "../config.js"
+import { isUserAuthenticated } from "../utils/helpers"
+import Router from "next/router"
 
 const Register = () => {
   const [formState, setFormState] = useState({
@@ -12,9 +14,9 @@ const Register = () => {
     error: "",
     success: "",
     buttonText: "Register",
-  });
+  })
 
-  const { name, email, password, error, success, buttonText } = formState;
+  const { name, email, password, error, success, buttonText } = formState
 
   useEffect(() => {
     {
@@ -27,7 +29,7 @@ const Register = () => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        });
+        })
     }
     {
       error &&
@@ -39,9 +41,13 @@ const Register = () => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        });
+        })
     }
-  }, [success, error]);
+  }, [success, error])
+
+  useEffect(() => {
+    isUserAuthenticated() && Router.push("/")
+  }, [])
 
   const handleFormInputChange = (name) => (e) => {
     setFormState({
@@ -50,18 +56,18 @@ const Register = () => {
       error: "",
       success: "",
       buttonText: "Register",
-    });
-  };
+    })
+  }
 
   const handleFormSubmit = async (e) => {
-    setFormState({ ...formState, buttonText: "Sending!" });
-    e.preventDefault();
+    setFormState({ ...formState, buttonText: "Sending!" })
+    e.preventDefault()
     try {
       const response = await axios.post(`${API}/register`, {
         name,
         email,
         password,
-      });
+      })
       setFormState({
         ...formState,
         name: "",
@@ -69,64 +75,62 @@ const Register = () => {
         password: "",
         buttonText: "Submitted",
         success: response.data.message,
-      });
+      })
     } catch (error) {
-      console.log(error);
-      setFormState({ ...formState, error: error.response.data.error });
+      console.log(error)
+      setFormState({ ...formState, error: error.response.data.error })
     }
-  };
+  }
   const registerForm = () => (
     <form onSubmit={handleFormSubmit}>
       <h2>Register</h2>
-      <div className="form-group">
-        <label htmlFor="name">Username</label>
+      <div className='form-group'>
+        <label htmlFor='name'>Username</label>
         <input
           onChange={handleFormInputChange("name")}
-          type="text"
+          type='text'
           value={name}
-          id="name"
-          className="form-control"
-          placeholder="Ironman..."
+          id='name'
+          className='form-control'
+          placeholder='Ironman...'
         />
       </div>
-      <div className="form-group">
-        <label htmlFor="email">Email</label>
+      <div className='form-group'>
+        <label htmlFor='email'>Email</label>
         <input
           onChange={handleFormInputChange("email")}
-          type="email"
+          type='email'
           value={email}
-          id="email"
-          className="form-control"
-          placeholder="warrior@galaxy.com"
+          id='email'
+          className='form-control'
+          placeholder='warrior@galaxy.com'
         />
       </div>
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
+      <div className='form-group'>
+        <label htmlFor='password'>Password</label>
         <input
-          type="password"
+          type='password'
           value={password}
-          id="password"
-          className="form-control"
+          id='password'
+          className='form-control'
           onChange={handleFormInputChange("password")}
         />
       </div>
-      <div className="form-group">
-        <button className="btn mx-auto btn-outline-warning">
-          {buttonText}
-        </button>
+      <div className='form-group'>
+        <button className='btn mx-auto'>{buttonText}</button>
       </div>
     </form>
-  );
+  )
 
   return (
     <Layout>
-      <div className="cloud__register"></div>
-      <div className="register-overlay col-md-6 offset-3 mt-5">
+      <div className='cloud__register'></div>
+      <div className='register-overlay col-md-6 offset-3 mt-5'>
         {registerForm()}
       </div>
       <ToastContainer />
     </Layout>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register
