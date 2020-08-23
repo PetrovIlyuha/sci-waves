@@ -2,326 +2,209 @@ import * as React from "react";
 
 function Icon(props) {
   return (
-    <svg
-      width="1400px"
-      height="900px"
-      viewBox="0 0 1062 857"
-      fill="none"
-      {...props}
-    >
+    <svg width={1440} height={1024} fill="none" {...props}>
       <path
+        opacity={0.143}
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M726.95 650.665c-123.038 15.629-243.887-17.183-355.822-51.394-130.64-39.928-281.618-76.83-338.897-160.936-58.48-85.869-4.474-184.458 42.664-274.039 46.372-88.124 86.658-199.165 224.067-232.858C438.639-102.81 567.875 3.364 716.801 6.902c132.601 3.15 268.823-101.769 379.419-56.526 109.52 44.8 13.42 162.605 64.97 238.316 59.46 87.323 297.15 135.954 252.28 227.637-44.81 91.537-280.23 57.426-414.194 103.153-102.891 35.121-158.005 116.662-272.326 131.183z"
+        d="M561.753 611.62c-120.059-46.03-239.47-107.308-283.618-221.985-44.09-114.53 19.471-239.774 58.183-363.606 51.113-163.505 39.859-370.858 199.08-459.342 162.89-90.523 359.185-14.71 510.842 64.819 131.76 69.096 182.85 205.508 248.55 333.41 77.03 149.972 240.57 298.173 159.53 461.043-81.03 162.844-316.05 184.722-499.891 222.962-137.754 28.654-269.058 10.093-392.676-37.301z"
         fill="url(#prefix__paint0_linear)"
+        stroke="#FAF4F4"
+        strokeWidth={5.143}
       />
       <path
+        opacity={0.286}
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M496.417-107.468c115.148-11.598 229.166-54.488 333.884-5.876C955.999-54.992 1083.31 39.232 1105.48 175.271c22.2 136.302-84.94 251.769-169.188 361.908-81.696 106.807-164.43 231.841-298.28 249.236-132.002 17.154-245.82-78.334-345.553-165.565-88.274-77.208-146.802-175.607-174.398-289.207-30.652-126.179-71.989-275.76 13.151-374.571 83.61-97.036 237.342-51.661 365.205-64.54z"
+        d="M586.305 572.887c-114.697-51.238-227.943-117.454-264.862-232.52-36.872-114.919 31.897-235.071 76.337-355.06 58.678-158.43 58.845-363.103 218.997-442.346 163.843-81.07 351.342 3.249 495.073 89.023 124.88 74.521 167.4 211.326 224.65 340.476 67.11 151.433 218.75 305.393 130.9 461.722-87.84 156.302-318.39 166.238-499.864 194.807-135.983 21.407-263.133-3.346-381.231-56.102z"
         fill="url(#prefix__paint1_linear)"
-        stroke="url(#prefix__paint2_linear)"
-        strokeLinecap="round"
-        strokeDasharray="40 50 30 40 50 30"
+        stroke="#FAF4F4"
+        strokeWidth={6.286}
       />
       <path
-        opacity={0.889}
+        opacity={0.429}
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M498.042-99.07c113.043-9.407 225.52-49.454 327.3-.115C947.513-39.962 1070.65 54.393 1090.01 187.893c19.41 133.758-87.59 244.943-172.059 351.302-81.909 103.14-165.15 224.1-296.622 238.863-129.655 14.559-239.542-80.805-335.768-167.851-85.17-77.044-140.823-174.324-165.901-285.957C91.806 200.256 53.886 53.181 139.032-42.077c83.615-93.546 233.484-46.549 359.01-56.994z"
+        d="M611.991 536.066C502.849 479.967 395.925 409.197 366.079 294.13 336.271 179.211 409.8 64.369 459.586-51.517c65.737-153.012 76.874-354.428 237.355-424.49 164.18-71.676 342.569 20.583 478.189 112.107 117.82 79.518 151.97 216.257 200.89 346.188 57.35 152.351 197.02 311.372 102.94 460.872-94.07 149.475-319.51 147.846-498.076 166.982-133.803 14.338-256.514-16.313-368.893-74.076z"
+        fill="url(#prefix__paint2_linear)"
+        stroke="#FAF4F4"
+        strokeWidth={7.429}
+      />
+      <path
+        opacity={0.571}
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M638.667 501.207c-103.422-60.608-203.895-135.539-226.844-250.23-22.92-114.544 54.915-223.887 109.656-335.434 72.278-147.284 93.907-344.898 254.132-405.87 163.918-62.377 332.929 37.241 460.269 134.016 110.63 84.078 136.62 220.305 177.37 350.567 47.78 152.739 175.46 316.121 75.73 458.544-99.72 142.398-319.45 129.614-494.582 139.584-131.232 7.471-249.244-28.772-355.731-91.177z"
         fill="url(#prefix__paint3_linear)"
-        stroke="url(#prefix__paint4_linear)"
-        strokeWidth={1.444}
-        strokeLinecap="round"
-        strokeDasharray="40 50 30 40 50 30"
+        stroke="#FAF4F4"
+        strokeWidth={8.571}
       />
       <path
-        opacity={0.778}
+        opacity={0.714}
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M499.513-90.977c110.897-7.291 221.771-44.563 320.62 5.415 118.652 59.99 237.637 154.36 254.307 285.265 16.69 131.158-90.044 238.103-174.623 340.708-82.02 99.499-165.652 216.406-294.695 228.626-127.26 12.051-233.254-83.082-326.011-169.847-82.099-76.797-134.935-172.888-157.571-282.501-25.142-121.75-59.746-266.247 25.308-357.983C230.373-131.38 376.37-82.88 499.513-90.976z"
+        d="M666.185 468.35c-97.558-64.756-191.48-143.454-207.73-257.406C442.226 97.137 523.912-6.544 583.208-113.542c78.293-141.277 109.909-334.578 269.31-386.586 163.072-53.206 322.472 53.182 441.412 154.7 103.34 88.201 121.4 223.487 154.16 353.64 38.42 152.611 154.15 319.663 49.36 454.794-104.77 135.108-318.23 111.61-489.44 112.711-128.297.824-241.374-40.691-341.825-107.367z"
+        fill="url(#prefix__paint4_linear)"
+        stroke="#FAF4F4"
+        strokeWidth={9.714}
+      />
+      <path
+        opacity={0.857}
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M694.402 437.526c-91.581-68.538-178.878-150.605-188.645-263.471-9.754-112.72 75.325-210.607 138.772-312.87C728.304-273.841 769.38-462.35 927.407-505.551c161.673-44.197 311.273 68.361 421.723 174.115C1445.09-239.555 1455.49-105.62 1480.48 24c29.3 151.984 133.14 322.022 23.88 449.683-109.24 127.64-315.9 93.899-482.72 86.452-125.01-5.58-232.942-52.038-327.238-122.609z"
         fill="url(#prefix__paint5_linear)"
-        stroke="url(#prefix__paint6_linear)"
-        strokeWidth={1.889}
-        strokeLinecap="round"
-        strokeDasharray="40 50 30 40 50 30"
+        stroke="#FAF4F4"
+        strokeWidth={10.857}
       />
       <path
-        opacity={0.667}
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M500.839-83.19c108.713-5.254 217.92-39.818 313.848 10.712C929.832-11.825 1044.71 82.443 1058.77 210.7c14.08 128.505-92.274 231.254-176.862 330.133-82.029 95.888-165.937 208.765-292.502 218.531-124.817 9.631-226.962-85.164-316.289-171.555-79.064-76.466-129.141-171.299-149.413-278.842-22.517-119.451-53.906-261.3 30.959-349.545 83.34-86.66 225.458-36.778 346.176-42.613z"
-        fill="url(#prefix__paint7_linear)"
-        stroke="url(#prefix__paint8_linear)"
-        strokeWidth={2.333}
-        strokeLinecap="round"
-        strokeDasharray="40 50 30 40 50 30"
+        d="M723.171 408.76c-85.514-71.952-166.14-156.99-169.659-268.436-3.514-111.304 84.502-203.29 151.692-300.658C793.921-288.897 843.91-472.17 1000.04-506.753c159.72-35.38 299.38 82.743 401.29 192.224 88.54 95.119 91.55 227.31 109 355.987 20.47 150.879 112.52 323.227-.61 443.278-113.11 120.03-312.5 76.544-474.5 60.895-121.396-11.726-224-62.786-312.049-136.871z"
+        fill="url(#prefix__paint6_linear)"
+        stroke="#FAF4F4"
+        strokeWidth={12}
       />
       <path
-        opacity={0.556}
+        opacity={0.143}
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M502.028-75.712c106.492-3.295 213.973-35.221 306.99 15.774C920.671 1.274 1031.48 95.327 1043.03 220.887c11.57 125.803-94.294 224.401-178.787 319.587-81.937 92.306-166.005 201.181-290.048 208.584-122.329 7.3-220.669-87.053-306.608-172.978-76.066-76.052-123.444-169.562-141.432-274.986-19.981-117.098-48.258-256.23 36.323-341.022 83.061-83.267 221.298-32.124 339.55-35.784z"
-        fill="url(#prefix__paint9_linear)"
-        stroke="url(#prefix__paint10_linear)"
-        strokeWidth={2.778}
-        strokeLinecap="round"
-        strokeDasharray="40 50 30 40 50 30"
+        d="M1329.23-217.938c82.82 58.137 142.01 140.04 190.16 229.984 50.14 93.648 115.87 193.697 93.49 299.797-22.18 105.118-135.06 159.414-207.22 239.34-67.19 74.426-107.92 184.442-202.28 214.227-94.08 29.698-183.73-42.113-278.825-62.363-99.562-21.201-215.768 6.116-293.287-59.466-79.463-67.228-103.409-181.325-115.882-286.701-12.138-102.548.339-208.382 46.161-302.33C605.994-36.582 688.88-96.867 767.578-160.194c84.054-67.637 162.933-156.208 268.442-167.056 107.01-11.002 206.15 48.199 293.21 109.311z"
+        fill="url(#prefix__paint7_radial)"
+        stroke="#000"
+        strokeWidth={5.143}
       />
       <path
-        opacity={0.444}
+        opacity={0.429}
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M503.088-68.545c104.237-1.416 209.934-30.776 300.054 20.6 108.176 61.668 214.968 155.393 224.108 278.208 9.15 123.052-96.113 217.55-180.409 309.076-81.745 88.758-165.861 193.66-287.338 198.79-119.799 5.059-214.381-88.749-296.976-174.115-73.106-75.559-117.847-167.68-133.632-270.94-17.533-114.693-42.804-251.046 41.4-332.42 82.69-79.911 217.046-27.626 332.793-29.199z"
-        fill="url(#prefix__paint11_linear)"
-        stroke="url(#prefix__paint12_linear)"
-        strokeWidth={3.222}
+        d="M1339.67-225.27c79.64 55.923 136.52 134.76 182.78 221.352 48.16 90.158 111.31 186.467 89.68 288.683-21.43 101.271-130.1 153.67-199.61 230.72-64.72 71.748-104.01 177.753-194.83 206.527-90.56 28.689-176.76-40.4-268.248-59.82-95.785-20.332-207.63 6.085-282.164-57.016-76.404-64.683-99.344-174.561-111.252-276.049-11.588-98.764.513-200.716 44.689-291.249 42.851-87.817 122.662-145.958 198.446-207.026 80.942-65.223 156.923-150.607 258.459-161.149 102.98-10.694 198.32 46.241 282.05 105.027z"
+        fill="url(#prefix__paint8_radial)"
+        stroke="#9AFF5B"
+        strokeWidth={7.429}
         strokeLinecap="round"
-        strokeDasharray="40 50 30 40 50 30"
+        strokeDasharray="50 100 20 50 100 20"
       />
       <path
-        opacity={0.333}
+        opacity={0.714}
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M504.028-61.692c101.949.383 205.804-26.481 293.044 25.188C901.789 25.518 1004.6 118.806 1011.43 238.83c6.84 120.256-97.712 210.704-181.709 298.608-81.455 85.244-165.506 186.207-284.376 189.155-117.228 2.909-208.102-90.252-287.4-174.97-70.188-74.985-112.355-165.655-126.017-266.706-15.175-112.24-37.545-245.751 46.187-323.747 82.227-76.594 212.706-23.287 325.913-22.862z"
-        fill="url(#prefix__paint13_linear)"
-        stroke="url(#prefix__paint14_linear)"
-        strokeWidth={3.667}
-        strokeLinecap="round"
-        strokeDasharray="40 50 30 40 50 30"
-      />
-      <path
-        opacity={0.222}
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M504.854-55.154c99.631 2.102 201.592-22.341 285.969 29.539 101.281 62.273 200.164 155.013 204.781 272.204 4.626 117.418-99.105 203.872-182.703 288.192-81.068 81.769-164.942 178.826-281.167 179.686-114.621.849-201.838-91.564-277.887-175.546-67.312-74.333-106.97-163.491-118.592-262.291-12.908-109.741-32.484-240.351 50.685-315.011C267.615-111.7 394.222-57.49 504.854-55.154z"
-        fill="url(#prefix__paint15_linear)"
-        stroke="url(#prefix__paint16_linear)"
-        strokeWidth={4.111}
-        strokeLinecap="round"
-        strokeDasharray="40 50 30 40 50 30"
-      />
-      <path
-        opacity={0.111}
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M505.577-48.934c97.285 3.741 197.299-18.356 278.832 33.65 97.868 62.426 192.873 154.509 195.381 268.828C982.302 368.085 879.5 450.6 796.4 531.378 715.814 609.711 632.227 702.9 518.682 701.766 406.706 700.647 323.09 609.08 250.24 525.921c-64.481-73.604-101.696-161.191-111.36-257.7-10.734-107.197-27.624-234.851 54.892-306.22 81.034-70.085 203.778-15.09 311.805-10.935z"
-        fill="url(#prefix__paint17_linear)"
-        stroke="url(#prefix__paint18_linear)"
-        strokeWidth={4.556}
-        strokeLinecap="round"
-        strokeDasharray="40 50 30 40 50 30"
+        d="M1342.1-246.603c76.47 53.711 131.04 129.482 175.4 212.72 46.19 86.669 106.77 179.238 85.89 277.571-20.69 97.423-125.15 147.925-192 222.099-62.26 69.07-100.11 171.064-187.39 198.826-87.04 27.681-169.79-38.686-257.672-57.276-92.008-19.463-199.491 6.053-271.04-54.566-73.345-62.139-95.279-167.797-106.621-265.397-11.039-94.981.686-193.05 43.216-280.167 41.255-84.504 117.992-140.502 190.862-199.309 77.83-62.811 150.912-145.006 248.475-155.244 98.95-10.384 190.5 44.284 270.88 100.743z"
+        fill="url(#prefix__paint9_radial)"
+        stroke="#9AFF5B"
+        strokeWidth={9.714}
       />
       <defs>
         <linearGradient
           id="prefix__paint0_linear"
-          x1={388.976}
-          y1={537.125}
-          x2={1063.33}
-          y2={-55.031}
+          x1={1267.8}
+          y1={846.581}
+          x2={719.765}
+          y2={-586.147}
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#174082" />
-          <stop offset={1} stopColor="#60EFFF" stopOpacity={0.89} />
+          <stop stopColor="#2237F3" />
+          <stop offset={1} stopColor="#1E6E80" />
         </linearGradient>
         <linearGradient
           id="prefix__paint1_linear"
-          x1={310.222}
-          y1={730.084}
-          x2={851.545}
-          y2={-33.274}
+          x1={1262.74}
+          y1={839.032}
+          x2={792.185}
+          y2={-594.203}
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#BF0FFF" />
-          <stop offset={1} stopColor="#CBFF49" />
+          <stop stopColor="#2237F3" />
+          <stop offset={1} stopColor="#1E6E80" />
         </linearGradient>
         <linearGradient
           id="prefix__paint2_linear"
-          x1={543.799}
-          y1={-149.166}
-          x2={690.657}
-          y2={778.172}
+          x1={1257.61}
+          y1={831.459}
+          x2={863.477}
+          y2={-599.026}
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset={0.802} stopColor="#E6F877" stopOpacity={0.83} />
-          <stop offset={0.943} stopColor="#47458D" />
+          <stop stopColor="#2237F3" />
+          <stop offset={1} stopColor="#1E6E80" />
         </linearGradient>
         <linearGradient
           id="prefix__paint3_linear"
-          x1={301.078}
-          y1={717.401}
-          x2={843.674}
-          y2={-21.28}
+          x1={1252.39}
+          y1={823.857}
+          x2={933.633}
+          y2={-600.655}
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#BF0FFF" />
-          <stop offset={1} stopColor="#CBFF49" />
+          <stop stopColor="#2237F3" />
+          <stop offset={1} stopColor="#1E6E80" />
         </linearGradient>
         <linearGradient
           id="prefix__paint4_linear"
-          x1={545.197}
-          y1={-139.076}
-          x2={673.067}
-          y2={770.88}
+          x1={1247.09}
+          y1={816.221}
+          x2={1002.64}
+          y2={-599.105}
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset={0.802} stopColor="#E6F877" stopOpacity={0.83} />
-          <stop offset={0.943} stopColor="#47458D" />
+          <stop stopColor="#2237F3" />
+          <stop offset={1} stopColor="#1E6E80" />
         </linearGradient>
         <linearGradient
           id="prefix__paint5_linear"
-          x1={292.458}
-          y1={704.3}
-          x2={835.635}
-          y2={-9.895}
+          x1={1241.72}
+          y1={808.547}
+          x2={1070.46}
+          y2={-594.373}
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#BF0FFF" />
-          <stop offset={1} stopColor="#CBFF49" />
+          <stop stopColor="#2237F3" />
+          <stop offset={1} stopColor="#1E6E80" />
         </linearGradient>
         <linearGradient
           id="prefix__paint6_linear"
-          x1={546.397}
-          y1={-129.31}
-          x2={655.932}
-          y2={762.889}
+          x1={1236.28}
+          y1={800.832}
+          x2={1137.05}
+          y2={-586.436}
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset={0.802} stopColor="#E6F877" stopOpacity={0.83} />
-          <stop offset={0.943} stopColor="#47458D" />
+          <stop stopColor="#2237F3" />
+          <stop offset={1} stopColor="#1E6E80" />
         </linearGradient>
-        <linearGradient
-          id="prefix__paint7_linear"
-          x1={284.372}
-          y1={690.793}
-          x2={827.441}
-          y2={0.877}
+        <radialGradient
+          id="prefix__paint7_radial"
+          cx={0}
+          cy={0}
+          r={1}
           gradientUnits="userSpaceOnUse"
+          gradientTransform="rotate(168.318 1008.456 247.86) scale(1246.27 1191.93)"
         >
-          <stop stopColor="#BF0FFF" />
-          <stop offset={1} stopColor="#CBFF49" />
-        </linearGradient>
-        <linearGradient
-          id="prefix__paint8_linear"
-          x1={547.408}
-          y1={-119.873}
-          x2={639.267}
-          y2={754.213}
+          <stop stopColor="#EDFF80" />
+          <stop offset={1} stopColor="#CF4E3C" />
+        </radialGradient>
+        <radialGradient
+          id="prefix__paint8_radial"
+          cx={0}
+          cy={0}
+          r={1}
           gradientUnits="userSpaceOnUse"
+          gradientTransform="rotate(168.258 1009.405 213.477) scale(1199.72 1147.61)"
         >
-          <stop offset={0.802} stopColor="#E6F877" stopOpacity={0.83} />
-          <stop offset={0.943} stopColor="#47458D" />
-        </linearGradient>
-        <linearGradient
-          id="prefix__paint9_linear"
-          x1={276.828}
-          y1={676.897}
-          x2={819.11}
-          y2={11.035}
+          <stop stopColor="#EDFF80" />
+          <stop offset={1} stopColor="#CF4E3C" />
+        </radialGradient>
+        <radialGradient
+          id="prefix__paint9_radial"
+          cx={0}
+          cy={0}
+          r={1}
           gradientUnits="userSpaceOnUse"
+          gradientTransform="rotate(128.794 642.926 407.064) scale(601.739 603.494)"
         >
-          <stop stopColor="#BF0FFF" />
-          <stop offset={1} stopColor="#CBFF49" />
-        </linearGradient>
-        <linearGradient
-          id="prefix__paint10_linear"
-          x1={548.239}
-          y1={-110.768}
-          x2={623.088}
-          y2={744.866}
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset={0.802} stopColor="#E6F877" stopOpacity={0.83} />
-          <stop offset={0.943} stopColor="#47458D" />
-        </linearGradient>
-        <linearGradient
-          id="prefix__paint11_linear"
-          x1={269.833}
-          y1={662.626}
-          x2={810.657}
-          y2={20.579}
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#BF0FFF" />
-          <stop offset={1} stopColor="#CBFF49" />
-        </linearGradient>
-        <linearGradient
-          id="prefix__paint12_linear"
-          x1={548.899}
-          y1={-101.998}
-          x2={607.41}
-          y2={734.863}
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset={0.802} stopColor="#E6F877" stopOpacity={0.83} />
-          <stop offset={0.943} stopColor="#47458D" />
-        </linearGradient>
-        <linearGradient
-          id="prefix__paint13_linear"
-          x1={263.396}
-          y1={647.994}
-          x2={802.098}
-          y2={29.506}
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#BF0FFF" />
-          <stop offset={1} stopColor="#CBFF49" />
-        </linearGradient>
-        <linearGradient
-          id="prefix__paint14_linear"
-          x1={549.396}
-          y1={-93.567}
-          x2={592.249}
-          y2={724.217}
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset={0.802} stopColor="#E6F877" stopOpacity={0.83} />
-          <stop offset={0.943} stopColor="#47458D" />
-        </linearGradient>
-        <linearGradient
-          id="prefix__paint15_linear"
-          x1={257.524}
-          y1={633.017}
-          x2={793.448}
-          y2={37.817}
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#BF0FFF" />
-          <stop offset={1} stopColor="#CBFF49" />
-        </linearGradient>
-        <linearGradient
-          id="prefix__paint16_linear"
-          x1={549.74}
-          y1={-85.477}
-          x2={577.618}
-          y2={712.944}
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset={0.802} stopColor="#E6F877" stopOpacity={0.83} />
-          <stop offset={0.943} stopColor="#47458D" />
-        </linearGradient>
-        <linearGradient
-          id="prefix__paint17_linear"
-          x1={252.224}
-          y1={617.711}
-          x2={784.723}
-          y2={45.511}
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#BF0FFF" />
-          <stop offset={1} stopColor="#CBFF49" />
-        </linearGradient>
-        <linearGradient
-          id="prefix__paint18_linear"
-          x1={549.94}
-          y1={-77.731}
-          x2={563.532}
-          y2={701.06}
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset={0.802} stopColor="#E6F877" stopOpacity={0.83} />
-          <stop offset={0.943} stopColor="#47458D" />
-        </linearGradient>
+          <stop stopColor="#FCECEC" />
+          <stop offset={1} stopColor="#46B634" stopOpacity={0.72} />
+        </radialGradient>
       </defs>
     </svg>
   );
