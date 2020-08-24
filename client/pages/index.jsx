@@ -4,23 +4,22 @@ import { useEffect, useState } from "react"
 import { isUserAuthenticated } from "../utils/helpers"
 
 const Home = () => {
-  // const [isFirstVisit, setIsFirstVisit] = useState(true)
-  // useEffect(() => {
-  //   if (isFirstVisit) {
-  //     isUserAuthenticated() &&
-  //       toast.success(`Take a look around & have a nice search!`, {
-  //         position: "top-right",
-  //         autoClose: 5000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //       })
-  //   }
-  //   setIsFirstVisit(false)
-  // }, [])
-  // console.log(isFirstVisit)
+  const [isFirstVisit, setIsFirstVisit] = useState(true)
+  useEffect(() => {
+    if (isFirstVisit) {
+      isUserAuthenticated() &&
+        toast.success(`Take a look around & have a nice search!`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+    }
+    setIsFirstVisit(false)
+  }, [isFirstVisit])
   return (
     <Layout>
       <h3>Home Page</h3>

@@ -20,7 +20,6 @@ const Layout = ({ children }) => {
   )
 
   const userRole = isUserAuthenticated() && isUserAuthenticated().role
-  console.log(userRole)
 
   const onUserLogout = () => {
     logOutUser()
@@ -56,15 +55,17 @@ const Layout = ({ children }) => {
             </Link>
           </li>
           <li className='nav-item' onClick={onUserLogout}>
-            <a href='#'>
-              <AiOutlineLogout size={35} />
-            </a>
+            <Link href='/logout'>
+              <a>
+                <AiOutlineLogout size={35} />
+              </a>
+            </Link>
           </li>
         </div>
       )}
       {isUserAuthenticated() && userRole === "customer" && (
         <div className='login__menu'>
-          <li>
+          <li className='login__menu--user-info'>
             <Link href='/user'>
               <a>{isUserAuthenticated().name}</a>
             </Link>
