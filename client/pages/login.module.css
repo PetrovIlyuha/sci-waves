@@ -1,22 +1,10 @@
 .loginLayout {
   position: absolute;
-  top: 30%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   margin-right: 100px;
   margin-top: 100px;
-}
-
-.shape_login {
-  width: 1400px;
-  height: 100%;
-  object-fit: contain;
-  position: absolute;
-  margin-top: -200px;
-  margin-right: -200px;
-  right: 0;
-  background-repeat: no-repeat;
-  z-index: 0;
 }
 
 .loginForm {
@@ -25,7 +13,7 @@
   justify-content: space-between;
   background: url("../public/static/forms-bg.jpg") no-repeat center center;
   background-size: cover;
-  padding: 30px 50px;
+  padding: 30px 70px;
   border-radius: 10px;
   padding: 20 40px;
   min-height: 200px;
