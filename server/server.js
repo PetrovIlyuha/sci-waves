@@ -1,19 +1,19 @@
-const express = require("express");
-const morgan = require("morgan");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const mongoose = require("mongoose");
+const express = require("express")
+const morgan = require("morgan")
+const bodyParser = require("body-parser")
+const cors = require("cors")
+const dotenv = require("dotenv")
+const mongoose = require("mongoose")
 
-dotenv.config();
+dotenv.config()
 
-const port = process.env.PORT;
+const port = process.env.PORT
 
-const app = express();
+const app = express()
 
-app.use(cors({ origin: process.env.CLIENT_URL }));
-app.use(morgan("dev"));
-app.use(bodyParser.json({ extended: true }));
+app.use(cors({ origin: process.env.CLIENT_URL }))
+app.use(morgan("dev"))
+app.use(bodyParser.json({ extended: true }))
 
 mongoose.connect(
   process.env.MONGO_ACCESS,
@@ -25,16 +25,18 @@ mongoose.connect(
   },
   (err, data) => {
     if (err) {
-      throw new Error(`DB Access errored with: ${err}`);
+      throw new Error(`DB Access errored with: ${err}`)
     }
-    console.log(`DB connection established`);
+    console.log(`DB connection established`)
   }
-);
+)
 
-const authRoutes = require("./routes/auth");
+const authRoutes = require("./routes/auth")
+const userRoutes = require("./routes/userRouter")
 
-app.use("/api", authRoutes);
+app.use("/api", authRoutes)
+app.use("/api", userRoutes)
 
 app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
-});
+  console.log(`Server is listening on port ${port}`)
+})
