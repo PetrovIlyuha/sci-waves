@@ -87,9 +87,11 @@ const Login = () => {
 
   return (
     <Layout>
-      <LoginBack className={classes.shape_login} />
+      {/* <LoginBack className={classes.shape_login} /> */}
       <div className={classes.loginLayout}>
-        <form onSubmit={handleFormSubmit} className={classes.loginForm}>
+        <form
+          onSubmit={handleFormSubmit}
+          className={`${classes.loginForm} col-md-6 col-lg-12 mt-5`}>
           <h2>Login Here</h2>
           <input
             value={email}

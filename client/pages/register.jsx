@@ -124,8 +124,7 @@ const Register = () => {
 
   return (
     <Layout>
-      <div className='cloud__register'></div>
-      <div className='register-overlay col-md-6 offset-3 mt-5'>
+      <div className='register-overlay col-md-6 col-lg-6 offset-lg-3 mt-5'>
         {registerForm()}
       </div>
       <ToastContainer />
