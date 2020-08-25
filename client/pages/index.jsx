@@ -9,7 +9,7 @@ const Home = () => {
     if (isFirstVisit) {
       isUserAuthenticated() &&
         toast.success(`Take a look around & have a nice search!`, {
-          position: "top-right",
+          position: "bottom-left",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
