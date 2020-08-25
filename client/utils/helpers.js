@@ -17,10 +17,28 @@ export const removeCookie = (key) => {
 }
 
 // get cookie from storage
-export const getCookie = (key) => {
-  if (process.browser) {
-    return cookie.get(key)
+export const getCookie = (key, req) => {
+  return process.browser
+    ? getCookieClientSide(key)
+    : getCookieServerSide(key, req)
+}
+
+export const getCookieClientSide = (key) => {
+  return cookie.get(key)
+}
+
+export const getCookieServerSide = (key, req) => {
+  if (!req.headers.cookie) {
+    return undefined
   }
+  console.log("req.headers.cookie", req.headers.cookie)
+  let token = req.headers.cookie
+    .split(";")
+    .find((cookie) => cookie.trim().startsWith(`${key}=`))
+  if (!token) return undefined
+  let tokenValue = token.split("=")[1]
+  console.log("Get cookie from server", tokenValue)
+  return tokenValue
 }
 
 // save to local storage
