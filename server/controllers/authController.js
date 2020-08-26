@@ -1,8 +1,12 @@
 const User = require("../models/User")
 const AWS = require("aws-sdk")
 const jwt = require("jsonwebtoken")
+const _ = require("lodash")
 const expressJWT = require("express-jwt")
-const { registerEmailParams } = require("../utils/helperFunctions")
+const {
+  registerEmailParams,
+  forgotPassEmailParams,
+} = require("../utils/helperFunctions")
 const shortId = require("shortid")
 
 AWS.config.update({
@@ -32,13 +36,13 @@ exports.register = async (req, res) => {
     const sendEmailOnRegistration = ses.sendEmail(params).promise()
 
     sendEmailOnRegistration
-      .then((data) => {
+      .then(data => {
         console.log("email sending success", data)
         res.json({
           message: `Confirmation Email was sent to ${email}!`,
         })
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(`AWS SES error: ${err}`)
         res.json({
           message: `We could not verify your email! Please, try again later!`,
@@ -140,4 +144,87 @@ exports.adminMiddleware = (req, res, next) => {
     req.profile = user
     next()
   })
+}
+
+// password forgot/reset
+exports.forgotPassword = (req, res) => {
+  const { email } = req.body
+  // try to find user in DB
+  User.findOne({ email }).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "User does not exist...",
+      })
+    }
+    // token generation and email it to the user
+    const token = jwt.sign(
+      { name: user.name },
+      process.env.JWT_RESET_PASSWORD,
+      { expiresIn: "10m" }
+    )
+    const params = forgotPassEmailParams(email, token)
+    // population of db > user > resetPasswordLink
+    return user.updateOne({ resetPasswordLink: token }, (err, done) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Password reset failed. Try again later...",
+        })
+      }
+      const sendEmail = ses.sendEmail(params).promise()
+      sendEmail
+        .then(data => {
+          console.log("SES reset password success..", data)
+          return res.json({
+            message: `Email has been sent to ${email}. Follow the link from email to reset your password!`,
+          })
+        })
+        .catch(err => {
+          console.log("SES reset password failure", err)
+          return res.json({
+            message: `Email was not verified. Please, try again later.`,
+          })
+        })
+    })
+  })
+}
+exports.resetPassword = (req, res) => {
+  const { resetPasswordLink, newPassword } = req.body
+  if (resetPasswordLink) {
+    // check validity of the reset password link
+    jwt.verify(
+      resetPasswordLink,
+      process.env.JWT_RESET_PASSWORD,
+      (err, success) => {
+        if (err) {
+          return res.status(400).json({
+            error: "Link has expired. Perform another reset password request.",
+          })
+        }
+        // then link is active and valid
+        User.findOne({ resetPasswordLink }).exec((err, user) => {
+          if (err || !user) {
+            return res.status(400).json({
+              error: "Invalid Token. Try again later...",
+            })
+          }
+          const updatedFields = {
+            password: newPassword,
+            resetPasswordLink: "",
+          }
+          user = _.extend(user, updatedFields)
+          user.save((err, done) => {
+            if (err) {
+              return res.status(400).json({
+                error:
+                  "Saving User in Database with new password failed. Try again",
+              })
+            }
+            res.json({
+              message: "You can start using new password!",
+            })
+          })
+        })
+      }
+    )
+  }
 }

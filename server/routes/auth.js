@@ -5,17 +5,26 @@ const {
   registerActivate,
   login,
   requireSignin,
+  forgotPassword,
+  resetPassword,
 } = require("../controllers/authController")
 const {
   userRegistrationValidator,
   userLoginValidator,
+  forgotPassValidator,
+  resetPassValidator,
 } = require("../validators/authValidations")
 const { runValidation } = require("../validators")
 
 router.post("/register", userRegistrationValidator, runValidation, register)
 router.post("/register/activate", registerActivate)
 router.post("/login", userLoginValidator, runValidation, login)
-
-router.get("/profile", requireSignin, (req, res) => {})
+router.put(
+  "/forgot-password",
+  forgotPassValidator,
+  runValidation,
+  forgotPassword
+)
+router.put("/reset-password", resetPassValidator, runValidation, resetPassword)
 
 module.exports = router
