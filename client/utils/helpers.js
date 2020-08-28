@@ -10,7 +10,7 @@ export const setCookie = (key, value) => {
 }
 
 // removing cookie
-export const removeCookie = (key) => {
+export const removeCookie = key => {
   if (process.browser) {
     cookie.remove(key)
   }
@@ -23,7 +23,7 @@ export const getCookie = (key, req) => {
     : getCookieServerSide(key, req)
 }
 
-export const getCookieClientSide = (key) => {
+export const getCookieClientSide = key => {
   return cookie.get(key)
 }
 
@@ -31,13 +31,11 @@ export const getCookieServerSide = (key, req) => {
   if (!req.headers.cookie) {
     return undefined
   }
-  console.log("req.headers.cookie", req.headers.cookie)
   let token = req.headers.cookie
     .split(";")
-    .find((cookie) => cookie.trim().startsWith(`${key}=`))
+    .find(cookie => cookie.trim().startsWith(`${key}=`))
   if (!token) return undefined
   let tokenValue = token.split("=")[1]
-  console.log("Get cookie from server", tokenValue)
   return tokenValue
 }
 
@@ -49,7 +47,7 @@ export const setLocalStorage = (key, value) => {
 }
 
 // clear local storage
-export const clearLocalStorage = (key) => {
+export const clearLocalStorage = key => {
   if (process.browser) {
     localStorage.removeItem(key)
   }
