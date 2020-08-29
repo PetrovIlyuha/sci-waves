@@ -13,7 +13,9 @@ const app = express()
 
 app.use(cors({ origin: process.env.CLIENT_URL }))
 app.use(morgan("dev"))
-app.use(bodyParser.json({ extended: true }))
+app.use(
+  bodyParser.json({ limit: "5mb", type: "application/json", extended: true })
+)
 
 mongoose.connect(
   process.env.MONGO_ACCESS,
