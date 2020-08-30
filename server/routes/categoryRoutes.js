@@ -21,13 +21,13 @@ const {
 } = require("../controllers/categoryController")
 
 // routes
-// ? create category
+// ! create category
 router.post("/category", requireSignin, adminMiddleware, createCategory)
 // all categories
 router.get("/categories", getAllCategories)
 // single category
 router.get("/category/:slug", readSingleCategory)
-// ? update category
+// ! update category
 router.put(
   "/category/:slug",
   updateCategoryValidator,
