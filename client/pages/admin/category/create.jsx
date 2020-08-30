@@ -3,6 +3,7 @@ import Layout from "../../../components/Layout"
 import { ToastContainer, toast } from "react-toastify"
 
 import axios from "axios"
+import Resizer from "react-image-file-resizer"
 import { API } from "../../../config"
 import withAdmin from "../../withAdmin"
 
@@ -12,9 +13,9 @@ const CreateCategory = ({ user, token }) => {
     content: "",
     success: "",
     error: "",
-    formData: process.browser && new FormData(),
     buttonText: "Create",
     imageUploadText: "Upload Image",
+    image: "",
   })
 
   const {
@@ -22,7 +23,7 @@ const CreateCategory = ({ user, token }) => {
     content,
     success,
     error,
-    formData,
+    image,
     buttonText,
     imageUploadText,
   } = state
@@ -58,28 +59,52 @@ const CreateCategory = ({ user, token }) => {
   console.log("state", state)
 
   const handleFormInputChange = name => e => {
-    const value = name === "image" ? e.target.files[0] : e.target.value
-    const imageName = name === "image" ? e.target.files[0].name : "Upload Image"
-    formData.set(name, value)
     setState({
       ...state,
-      [name]: value,
+      [name]: e.target.value,
       error: "",
       success: "",
-      imageUploadText: imageName,
+      // imageUploadText: imageName,
     })
+  }
+
+  const handleImage = event => {
+    console.log(event.target.files[0])
+    var fileInput = false
+    if (event.target.files[0]) {
+      fileInput = true
+    }
+    if (fileInput) {
+      Resizer.imageFileResizer(
+        event.target.files[0],
+        300,
+        300,
+        "JPEG",
+        100,
+        0,
+        uri => {
+          setState({ ...state, image: uri })
+        },
+        "base64",
+        200,
+        200
+      )
+    }
   }
 
   const handleFormSubmit = async e => {
     setState({ ...state, buttonText: "Saving..." })
     e.preventDefault()
-    console.log("formData", ...formData)
     try {
-      const response = await axios.post(`${API}/category`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      const response = await axios.post(
+        `${API}/category`,
+        { name, content, image },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       console.log("Category create response", response)
       setState({
         ...state,
@@ -141,7 +166,7 @@ const CreateCategory = ({ user, token }) => {
                   name='image'
                   id='image'
                   accept='image/*'
-                  onChange={handleFormInputChange("image")}
+                  onChange={handleImage}
                   required
                   hidden
                 />
