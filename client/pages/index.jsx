@@ -13,7 +13,7 @@ const Home = ({ categories }) => {
     if (isFirstVisit) {
       isUserAuthenticated() &&
         toast.success(`Take a look around & have a nice search!`, {
-          position: "bottom-left",
+          position: "top-left",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -34,12 +34,11 @@ const Home = ({ categories }) => {
         </div>
       </div>
       <hr />
-      <div className='d-flex row'>
+      <div className='row offset-md-2'>
         {categories.map(category => (
-          <Link href='/'>
+          <Link href='/' key={category._id}>
             <a
-              style={{ border: "1px solid yellow" }}
-              className='bg-dark p-3 col-md-4 mx-1 my-2 rounded shadow-sm text-white'
+              className='bg-dark p-3 col-sm-12 col-md-3 mx-1 my-2 rounded shadow-sm text-white'
               style={{ textDecoration: "none" }}>
               <div>
                 <div className='row'>
