@@ -1,7 +1,7 @@
 import Head from "next/head"
 import Router from "next/router"
 import Link from "next/link"
-import HomeLogo from "./HomeLogo"
+import HomeLogo from "./HomeLogoDark"
 import { FiUserPlus } from "react-icons/fi"
 import { AiOutlineLogin } from "react-icons/ai"
 import { isUserAuthenticated, logOutUser } from "../utils/helpers"
@@ -28,11 +28,16 @@ const Layout = ({ children }) => {
 
   const navBar = () => (
     <ul className='nav customNav nav-tabs'>
-      <li className='nav-item'>
-        <a className='homeLink' href='/'>
-          <HomeLogo />
-        </a>
-      </li>
+      <ul className='left-menu'>
+        <li className='nav-item'>
+          <a className='homeLink' href='/'>
+            <HomeLogo />
+          </a>
+        </li>
+        <li className='nav-item'>
+          <a href='/user/link/create'>Create New Resource</a>
+        </li>
+      </ul>
       {!isUserAuthenticated() && (
         <div className='login__menu'>
           <li className='nav-item'>
