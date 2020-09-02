@@ -18,7 +18,6 @@ const linkSchema = mongoose.Schema(
     slug: {
       type: String,
       lowercase: true,
-      required: true,
       index: true,
     },
     postedBy: {
