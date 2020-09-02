@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../../../components/Layout"
+import RichText from "../../../components/functional/RichText"
 import { ToastContainer, toast } from "react-toastify"
 
 import axios from "axios"
@@ -10,25 +11,15 @@ import withAdmin from "../../withAdmin"
 const CreateCategory = ({ user, token }) => {
   const [state, setState] = useState({
     name: "",
-    content: "",
     success: "",
     error: "",
     buttonText: "Create",
     imageUploadText: "Upload Image",
     image: "",
   })
+  const [content, setContent] = useState("")
+  const { name, success, error, image, buttonText, imageUploadText } = state
 
-  const {
-    name,
-    content,
-    success,
-    error,
-    image,
-    buttonText,
-    imageUploadText,
-  } = state
-
-  useEffect(() => {}, [])
   useEffect(() => {
     {
       success &&
@@ -56,7 +47,10 @@ const CreateCategory = ({ user, token }) => {
     }
   }, [success, error])
 
-  console.log("state", state)
+  const handleContentChange = e => {
+    setContent(e)
+    setState({ ...state, success: "", error: "" })
+  }
 
   const handleFormInputChange = name => e => {
     setState({
@@ -125,6 +119,7 @@ const CreateCategory = ({ user, token }) => {
       })
     }
   }
+
   return (
     <Layout>
       <div className='row'>
@@ -149,13 +144,9 @@ const CreateCategory = ({ user, token }) => {
               <label htmlFor='content' className='text-muted'>
                 Category Description
               </label>
-              <textarea
-                type='text'
-                value={content}
-                name='content'
-                className='form-control'
-                onChange={handleFormInputChange("content")}
-                required
+              <RichText
+                content={content}
+                handleContentChange={handleContentChange}
               />
             </div>
             <div className='form-group'>
