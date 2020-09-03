@@ -36,10 +36,12 @@ mongoose.connect(
 const authRoutes = require("./routes/auth")
 const userRoutes = require("./routes/userRouter")
 const categoryRoutes = require("./routes/categoryRoutes")
+const linkRoutes = require("./routes/linkRoutes")
 
 app.use("/api", authRoutes)
 app.use("/api", userRoutes)
 app.use("/api", categoryRoutes)
+app.use("/api", linkRoutes)
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`)
