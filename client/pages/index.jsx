@@ -36,7 +36,7 @@ const Home = ({ categories }) => {
       <hr />
       <div className='row offset-md-2'>
         {categories.map(category => (
-          <Link href='/' key={category._id}>
+          <Link href={`/links/${category.slug}`} key={category._id}>
             <a
               className='bg-white p-3 col-sm-12 col-md-3 mx-1 my-2 rounded shadow-sm'
               style={{ textDecoration: "none" }}>
