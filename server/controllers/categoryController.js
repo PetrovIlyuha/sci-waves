@@ -1,6 +1,6 @@
 const Category = require("../models/Category")
 const slugify = require("slugify")
-const formidable = require("formidable")
+const Link = require("../models/Link")
 const AWS = require("aws-sdk")
 const { v4: uuidv4 } = require("uuid")
 const fs = require("fs")
@@ -57,6 +57,34 @@ exports.getAllCategories = (req, res) => {
     res.json(categories)
   })
 }
-exports.readSingleCategory = (req, res) => {}
+exports.readSingleCategory = (req, res) => {
+  const { limit, skip } = req.body
+  const { slug } = req.params
+  let limitForLinks = limit ? parseInt(limit) : 10
+  let skipLinks = skip ? parseInt(skip) : 0
+
+  Category.findOne({ slug })
+    .populate("postedBy", "_id name username")
+    .exec((err, category) => {
+      if (err) {
+        return res.status(400).json({ error: "Could not load category..." })
+      }
+      // res.json(category)
+      Link.find({ categories: category })
+        .populate("postedBy", "_id name username")
+        .populate("categories", "name")
+        .sort({ createdAt: -1 })
+        .limit(limitForLinks)
+        .skip(skipLinks)
+        .exec((err, links) => {
+          if (err) {
+            return res
+              .status(400)
+              .json({ error: "Could not load links from this category" })
+          }
+          res.json({ category, links })
+        })
+    })
+}
 exports.updateCategory = (req, res) => {}
 exports.removeCategory = (req, res) => {}
