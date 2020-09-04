@@ -4,7 +4,7 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false })
 const RichText = ({ handleContentChange, content }) => {
   const modules = {
     toolbar: [
-      [{ header: [1, 2, false] }],
+      [{ header: [1, 2, false] }, { color: ["red", "blue"] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
       [
         { list: "ordered" },
@@ -30,16 +30,19 @@ const RichText = ({ handleContentChange, content }) => {
     "image",
   ]
   return (
-    <ReactQuill
-      value={content}
-      onChange={handleContentChange}
-      modules={modules}
-      formats={formats}
-      placeholder='Describe new category...'
-      theme='snow'
-      className='pb-5 mb-3'
-      style={{ border: "2px solid grey" }}
-    />
+    <div className='bg-light'>
+      <ReactQuill
+        value={content}
+        onChange={handleContentChange}
+        modules={modules}
+        formats={formats}
+        placeholder='Describe new category...'
+        theme='snow'
+        style={{ color: "white" }}
+        className='pb-5 mb-3'
+        style={{ border: "2px solid grey" }}
+      />
+    </div>
   )
 }
 
