@@ -26,7 +26,7 @@ router.post("/category", requireSignin, adminMiddleware, createCategory)
 // all categories
 router.get("/categories", getAllCategories)
 // single category
-router.get("/category/:slug", readSingleCategory)
+router.post("/category/:slug", readSingleCategory)
 // ! update category
 router.put(
   "/category/:slug",
