@@ -124,11 +124,11 @@ const CreateCategory = ({ user, token }) => {
     <Layout>
       <div className='row'>
         <div className='col-md-6 offset-md-3'>
-          <h1>Create Category</h1>
+          <h1 className='text-white'>Create Category</h1>
           <br />
           <form onSubmit={handleFormSubmit}>
             <div className='form-group'>
-              <label htmlFor='title' className='text-muted'>
+              <label htmlFor='title' className='text-white'>
                 Category Name
               </label>
               <input
@@ -141,7 +141,7 @@ const CreateCategory = ({ user, token }) => {
               />
             </div>
             <div className='form-group'>
-              <label htmlFor='content' className='text-muted'>
+              <label htmlFor='content' className='text-white'>
                 Category Description
               </label>
               <RichText
