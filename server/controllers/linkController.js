@@ -16,6 +16,7 @@ exports.createLink = (req, res, next) => {
     res.status(200).json(data)
   })
 }
+
 exports.getAllLinks = (req, res, next) => {
   Link.find({}).exec((err, data) => {
     if (err) {
@@ -25,6 +26,20 @@ exports.getAllLinks = (req, res, next) => {
     }
     res.json(data)
   })
+}
+
+exports.clickCount = (req, res) => {
+  const { linkId } = req.body
+  Link.findByIdAndUpdate(linkId, { $inc: { likes: 1 } }, { new: true }).exec(
+    (err, data) => {
+      if (err) {
+        return res
+          .status(400)
+          .json({ error: "Could not update link's likes count" })
+      }
+      res.json(data)
+    }
+  )
 }
 exports.updateLink = (req, res, next) => {}
 exports.readSingleLink = (req, res, next) => {}
