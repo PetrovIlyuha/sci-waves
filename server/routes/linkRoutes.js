@@ -14,6 +14,7 @@ const {
 const {
   createLink,
   getAllLinks,
+  clickCount,
   updateLink,
   readSingleLink,
   removeLink,
@@ -30,6 +31,7 @@ router.post(
 )
 router.get("/links", getAllLinks)
 router.get("/link/:slug", readSingleLink)
+router.put("/click-count", clickCount)
 router.put(
   "/link/:slug",
   linkUpdateValidation,
