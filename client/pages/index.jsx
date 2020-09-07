@@ -28,7 +28,7 @@ const Home = ({ categories }) => {
     <Layout>
       <div className='row' style={{ marginTop: 100 }}>
         <div className='col-md-12'>
-          <div className='font-weight-bold text-center text-white'>
+          <div className='font-weight-bold text-center'>
             <h2>What ignites your curiosity the most?</h2>
           </div>
         </div>
@@ -38,7 +38,7 @@ const Home = ({ categories }) => {
         {categories.map(category => (
           <Link href={`/links/${category.slug}`} key={category._id}>
             <a
-              className='bg-white p-3 col-sm-12 col-md-3 mx-1 my-2 rounded shadow-sm'
+              className='bg-dark text-white p-3 col-sm-12 col-md-3 mx-1 my-2 rounded shadow-sm'
               style={{ textDecoration: "none" }}>
               <div>
                 <div className='row'>
