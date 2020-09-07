@@ -4,7 +4,7 @@
   font-family: "Lato", sans-serif !important;
 }
 .overall__layout-styles {
-  background: url("../header-bg-red.jpg") no-repeat center center;
+  background: url("../main-bg-version-rect1.png") no-repeat center center;
   background-size: cover;
   height: calc(100vh - 75px);
   margin-top: 75px;
