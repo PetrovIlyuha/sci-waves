@@ -7,7 +7,7 @@ import { AiOutlineLogin } from "react-icons/ai"
 import { isUserAuthenticated, logOutUser } from "../utils/helpers"
 import { AiOutlineLogout } from "react-icons/ai"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, background }) => {
   const Head = () => (
     <>
       <link
@@ -85,7 +85,13 @@ const Layout = ({ children }) => {
     </ul>
   )
   return (
-    <div className='overall__layout-styles'>
+    <div
+      className='overall__layout-styles'
+      style={{
+        background: background ? background : null,
+        height: background ? "200vh" : "100vh",
+        color: background ? "#333 !important" : "black",
+      }}>
       {Head()}
       {navBar()}
       <div className='container customContainer pt-5 pb-5'>{children}</div>
