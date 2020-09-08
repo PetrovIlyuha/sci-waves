@@ -100,10 +100,10 @@ const CreateLink = ({ token }) => {
       <Message success={success} error={error} />
       <div className='row' style={{ marginTop: 100 }}>
         <div className='col-md-12'>
-          <h2 className='text-white text-center'>Create New Resource Link</h2>
+          <h2 className=' text-center'>Create New Resource Link</h2>
           <br />
           <div className='row'>
-            <div className='col-md-4 text-white'>
+            <div className='col-md-4 '>
               <h3>Categories</h3>
               <div className='form-group mr-3' style={{ overflowY: "hidden" }}>
                 <ul
@@ -201,22 +201,22 @@ const CreateLink = ({ token }) => {
               </div>
             </div>
             <div className='col-md-8'>
-              <h3 className='text-white'>Resource Details</h3>
+              <h3 className=''>Resource Details</h3>
               <form onSubmit={handleCreateResourceSubmit}>
                 <div className='form-group'>
-                  <label className='text-white'>Name</label>
+                  <label className=''>Name</label>
                   <input
                     type='text'
-                    className='form-control bg-dark text-white'
+                    className='form-control bg-dark '
                     onChange={hangleNameChange}
                     value={title}
                   />
                 </div>
                 <div className='form-group'>
-                  <label className='text-white'>URL</label>
+                  <label className=''>URL</label>
                   <input
                     type='url'
-                    className='form-control bg-dark text-white'
+                    className='form-control bg-dark '
                     onChange={hangleURLChange}
                     value={url}
                   />
