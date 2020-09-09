@@ -29,7 +29,9 @@ const Home = ({ categories }) => {
       <div className='row' style={{ marginTop: 100 }}>
         <div className='col-md-12'>
           <div className='font-weight-bold text-center'>
-            <h2>What ignites your curiosity the most?</h2>
+            <h2 className='font-weight-bold'>
+              What ignites your curiosity the most?
+            </h2>
           </div>
         </div>
       </div>
