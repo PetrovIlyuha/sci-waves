@@ -94,7 +94,7 @@ const CreateLink = ({ token }) => {
   const handleFormatCheck = e => {
     setState({ ...state, format: e.target.value, success: "", error: "" })
   }
-  console.log(isUserAuthenticated(), token)
+
   return (
     <Layout>
       <Message success={success} error={error} />
@@ -207,7 +207,7 @@ const CreateLink = ({ token }) => {
                   <label className=''>Name</label>
                   <input
                     type='text'
-                    className='form-control bg-dark '
+                    className='form-control'
                     onChange={hangleNameChange}
                     value={title}
                   />
@@ -216,14 +216,18 @@ const CreateLink = ({ token }) => {
                   <label className=''>URL</label>
                   <input
                     type='url'
-                    className='form-control bg-dark '
+                    className='form-control'
                     onChange={hangleURLChange}
                     value={url}
                   />
                 </div>
                 <button
-                  className='btn btn-outline-warning'
-                  style={{ cursor: "pointer" }}
+                  className='btn btn-primary mt-3'
+                  style={{
+                    cursor: "pointer",
+                    width: "200px",
+                    fontSize: "1.3rem",
+                  }}
                   disabled={!token}>
                   {isUserAuthenticated() || token
                     ? "Submit"
