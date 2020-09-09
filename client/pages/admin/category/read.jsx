@@ -24,8 +24,24 @@ const ReadCategory = ({ user, token }) => {
     setState({ ...state, categories: response.data })
   }
 
-  const confirmDeletion = slug => {
-    console.log(slug)
+  const confirmDeletion = (e, slug) => {
+    e.preventDefault()
+    let requestOnDeletion = window.confirm("Are you sure you want to delete?")
+    if (requestOnDeletion) {
+      handleCategoryRemoval(slug)
+    }
+  }
+
+  const handleCategoryRemoval = async slug => {
+    try {
+      const response = await axios.delete(`${API}/category/${slug}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      console.log(`Deletion finalized`, response)
+      loadCategories()
+    } catch (err) {
+      console.error(`Category deletion failed with ${err}`)
+    }
   }
   return (
     <Layout>
@@ -64,7 +80,7 @@ const ReadCategory = ({ user, token }) => {
                     <div className='col-md-6'>
                       <button
                         className='btn btn-sm btn-danger'
-                        onClick={() => confirmDeletion(category.slug)}>
+                        onClick={e => confirmDeletion(e, category.slug)}>
                         Delete
                       </button>
                     </div>
