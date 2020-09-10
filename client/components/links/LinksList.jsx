@@ -4,7 +4,7 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow"
 const LinksList = ({ links, handleLinkUpvote }) => {
   return links.map((link, index) => (
     <div
-      key={index}
+      key={link._id}
       className='row p-3 ml-1 mr-3 bg-dark'
       style={{
         border: "2px solid lightyellow",
