@@ -109,6 +109,11 @@ exports.updateCategory = (req, res) => {
         })
 
         // Uploading new image
+        const imageType = image.split(";")[0].split("/")[1]
+        const base64Data = new Buffer.from(
+          image.replace(/^data:image\/\w+;base64,/, ""),
+          "base64"
+        )
         const params = {
           Bucket: "sci-waves",
           Key: `category/${uuidv4()}.${imageType}`,
