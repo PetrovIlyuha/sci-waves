@@ -74,8 +74,6 @@ const CreateLink = ({ token }) => {
     }
   }
 
-  console.log(state)
-
   const handleCategoryToggle = categoryID => () => {
     const candidateCategory = categories.indexOf(categoryID)
     const allCategories = [...categories]
