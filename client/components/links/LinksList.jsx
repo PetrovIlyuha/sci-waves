@@ -15,20 +15,24 @@ const LinksList = ({ links, handleLinkUpvote }) => {
       <div
         className='col-md-8 col-sm-8'
         onClick={() => handleLinkUpvote(link._id)}>
-        <a href={link.url} style={{ color: "whitesmoke" }} target='_blank'>
+        <a
+          href={link.url}
+          style={{ color: "whitesmoke", textDecoration: "none" }}
+          target='_blank'>
           <h5 className='pt-2'>{link.title}</h5>
           <h6
-            className='pt-2 text-danger'
+            className='pt-2 '
             style={{
-              background: "rgba(0,0,0,0.4)",
+              background: "#38147B",
               padding: "3px 5px",
               borderRadius: "4px",
+              color: "#C0AB0C",
             }}>
             {link.url}
           </h6>
         </a>
       </div>
-      <div className='col-md-4 col-sm-4 pt-2'>
+      <div className='col-md-4 col-sm-4 pt-2 text-white'>
         <span className='pull-right'>
           <span style={{ color: "yellow" }}>
             {formatDistanceToNow(new Date(link.createdAt), {
