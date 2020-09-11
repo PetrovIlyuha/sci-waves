@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Router from "next/router"
+import Message from "../components/hooks/Message"
 
 import { ToastContainer, toast } from "react-toastify"
 import { API } from "../config.js"
@@ -19,33 +20,6 @@ const Login = () => {
   })
 
   const { email, password, error, success, buttonText } = formState
-
-  useEffect(() => {
-    {
-      success &&
-        toast.success(`${success}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
-    }
-    {
-      error &&
-        toast.error(`${error}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
-    }
-  }, [success, error])
 
   useEffect(() => {
     isUserAuthenticated() && Router.push("/")
@@ -113,7 +87,6 @@ const Login = () => {
 
   return (
     <Layout>
-      {/* <LoginBack className={classes.shape_login} /> */}
       <div className={classes.loginLayout}>
         {loginForm()}
         <Link href='auth/password/forgot'>
@@ -122,7 +95,7 @@ const Login = () => {
           </a>
         </Link>
       </div>
-      <ToastContainer />
+      <Message success={success} error={error} />
     </Layout>
   )
 }
