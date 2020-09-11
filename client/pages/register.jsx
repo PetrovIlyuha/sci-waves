@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Layout from "../components/Layout"
-import { ToastContainer, toast } from "react-toastify"
+import Message from "../components/hooks/Message"
 import { API } from "../config.js"
 import { isUserAuthenticated } from "../utils/helpers"
 import Router from "next/router"
@@ -19,37 +19,10 @@ const Register = () => {
   const { name, email, password, error, success, buttonText } = formState
 
   useEffect(() => {
-    {
-      success &&
-        toast.success(`${success}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
-    }
-    {
-      error &&
-        toast.error(`${error}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
-    }
-  }, [success, error])
-
-  useEffect(() => {
     isUserAuthenticated() && Router.push("/")
   }, [])
 
-  const handleFormInputChange = (name) => (e) => {
+  const handleFormInputChange = name => e => {
     setFormState({
       ...formState,
       [name]: e.target.value,
@@ -59,7 +32,7 @@ const Register = () => {
     })
   }
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async e => {
     setFormState({ ...formState, buttonText: "Sending!" })
     e.preventDefault()
     try {
@@ -82,9 +55,15 @@ const Register = () => {
     }
   }
   const registerForm = () => (
-    <form onSubmit={handleFormSubmit}>
+    <form
+      onSubmit={handleFormSubmit}
+      className='form-group shadow p-3 mb-5 bg-info rounded'
+      style={{
+        borderRadius: "10px",
+        color: "lightyellow",
+      }}>
       <h2>Register</h2>
-      <div className='form-group'>
+      <div>
         <label htmlFor='name'>Username</label>
         <input
           onChange={handleFormInputChange("name")}
@@ -117,17 +96,17 @@ const Register = () => {
         />
       </div>
       <div className='form-group'>
-        <button className='btn mx-auto'>{buttonText}</button>
+        <button className='btn mx-auto btn-primary'>{buttonText}</button>
       </div>
     </form>
   )
 
   return (
     <Layout>
-      <div className='register-overlay col-md-6 col-lg-6 offset-lg-3 mt-5'>
+      <div className='col-md-6 offset-md-3 col-lg-6 offset-lg-3 mt-5'>
         {registerForm()}
       </div>
-      <ToastContainer />
+      <Message success={success} error={error} />
     </Layout>
   )
 }
