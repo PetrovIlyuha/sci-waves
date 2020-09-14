@@ -1,22 +1,23 @@
 import axios from "axios"
 import { API } from "../config"
 import { getCookie } from "../utils/helpers"
-import { Router } from "next/router"
 
-const withUser = (Page) => {
-  const WithAuthUser = (props) => <Page {...props} />
-  WithAuthUser.getInitialProps = async (context) => {
+const withUser = Page => {
+  const WithAuthUser = props => <Page {...props} />
+  WithAuthUser.getInitialProps = async context => {
     const token = await getCookie("token", context.req)
     let user = null
+    let userLinks = []
     if (token) {
       try {
         const response = await axios.get(`${API}/user`, {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
+            contentType: "application/json",
           },
         })
-        user = response.data
+        user = response.data.user
+        userLinks = response.data.links
       } catch (err) {
         if (err.response.status === 401) {
           user = null
@@ -32,6 +33,7 @@ const withUser = (Page) => {
       return {
         ...(Page.getInitialProps ? await Page.getInitialProps(context) : {}),
         user,
+        userLinks,
         token,
       }
     }

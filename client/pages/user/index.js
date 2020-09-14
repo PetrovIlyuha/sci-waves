@@ -6,6 +6,7 @@ import { getCookie } from "../../utils/helpers"
 import withUser from "../withUser"
 
 const UserPage = ({ user, token }) => {
+  console.log(user)
   return (
     <Layout>
       <h3>Customer Page</h3>
