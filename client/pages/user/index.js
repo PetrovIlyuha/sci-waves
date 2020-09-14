@@ -5,11 +5,11 @@ import { API } from "../../config"
 import { getCookie } from "../../utils/helpers"
 import withUser from "../withUser"
 
-const UserPage = ({ user, token }) => {
-  console.log(user)
+const UserPage = ({ user, userLinks, token }) => {
   return (
     <Layout>
-      <h3>Customer Page</h3>
+      <h3>Customer Links</h3>
+      <p>{JSON.stringify(userLinks)}</p>
     </Layout>
   )
 }
