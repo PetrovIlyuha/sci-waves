@@ -5,7 +5,8 @@ import { BsFolderPlus } from "react-icons/bs"
 import { FcOpenedFolder } from "react-icons/fc"
 import Link from "next/link"
 
-const AdminPage = ({ user, token }) => {
+const AdminPage = ({ user, adminLinks, token }) => {
+  console.log(adminLinks)
   return (
     <Layout>
       <h1>Admin Dashboard</h1>
