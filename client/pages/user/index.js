@@ -90,7 +90,7 @@ const UserPage = ({ user, userLinks, token }) => {
                   })}
                 </span>
               </div>
-              <div className='row mt-2 ml-4'>
+              <div className='row m-2'>
                 <div className='col-md-8 col-sm-8'>
                   <span>
                     {link.type} / {link.format}
@@ -102,26 +102,28 @@ const UserPage = ({ user, userLinks, token }) => {
                       </span>
                     ))}
                     <span className='badge text-secondary ml-4'>
-                      {link.likes} likes in the moment
+                      {link.likes} likes currently
                     </span>
                   </div>
                 </div>
                 <div
-                  className='col-md-4 col-sm-4 d-flex mt-3'
+                  className='col-md-4 col-sm-4  mt-3'
                   style={{
                     width: "230px",
+                    display: "flex",
+                    marginLeft: "-20px",
                     justifyContent: "space-between",
                     height: 29,
                     cursor: "pointer",
                   }}>
                   <Link href={`/user/link/${link._id}`}>
-                    <span className='badge bg-dark text-warning pull-right p-2'>
+                    <span className='badge bg-dark text-warning p-2'>
                       Update
                     </span>
                   </Link>
                   <span
                     onClick={e => confirmDeletion(e, link._id, link.title)}
-                    className='badge bg-dark text-danger pull-right p-2'>
+                    className='badge bg-dark text-danger p-2 ml-2'>
                     Delete
                   </span>
                 </div>
