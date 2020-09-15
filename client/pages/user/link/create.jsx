@@ -98,10 +98,10 @@ const CreateLink = ({ token }) => {
       <Message success={success} error={error} />
       <div className='row' style={{ marginTop: 100 }}>
         <div className='col-md-12'>
-          <h2 className=' text-center'>Create New Resource Link</h2>
+          <h2 className='text-center'>Create New Resource Link</h2>
           <br />
           <div className='row'>
-            <div className='col-md-4 '>
+            <div className='col-md-4'>
               <h3>Categories</h3>
               <div className='form-group mr-3' style={{ overflowY: "hidden" }}>
                 <ul
@@ -220,10 +220,10 @@ const CreateLink = ({ token }) => {
                   />
                 </div>
                 <button
-                  className='btn btn-primary mt-3'
+                  className='btn btn-primary mt-4'
                   style={{
                     cursor: "pointer",
-                    width: "200px",
+                    width: "100%",
                     fontSize: "1.3rem",
                   }}
                   disabled={!token}>
