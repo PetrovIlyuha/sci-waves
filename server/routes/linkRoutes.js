@@ -30,7 +30,7 @@ router.post(
   createLink
 )
 router.get("/links", getAllLinks)
-router.get("/link/:slug", readSingleLink)
+router.get("/link/:id", readSingleLink)
 router.put("/click-count", clickCount)
 router.put(
   "/link/:id",
