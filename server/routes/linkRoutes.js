@@ -33,12 +33,12 @@ router.get("/links", getAllLinks)
 router.get("/link/:slug", readSingleLink)
 router.put("/click-count", clickCount)
 router.put(
-  "/link/:slug",
+  "/link/:id",
   linkUpdateValidation,
   runValidation,
   requireSignin,
   authMiddleware,
   updateLink
 )
-router.delete("/link/:slug", requireSignin, authMiddleware, removeLink)
+router.delete("/link/:id", requireSignin, authMiddleware, removeLink)
 module.exports = router
