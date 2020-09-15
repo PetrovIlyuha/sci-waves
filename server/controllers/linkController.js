@@ -3,7 +3,10 @@ const slugify = require("slugify")
 
 exports.createLink = (req, res, next) => {
   const { title, url, categories, type, format } = req.body
-  const slug = slugify(url.split("/").pop())
+  let slug = slugify(url.split("/").pop())
+  if (slug === "") {
+    slug = slugify(title)
+  }
   let link = new Link({ title, url, categories, type, format, slug })
   link.postedBy = req.user._id
 
@@ -41,6 +44,28 @@ exports.clickCount = (req, res) => {
     }
   )
 }
-exports.updateLink = (req, res, next) => {}
+exports.updateLink = (req, res, next) => {
+  const { id } = req.params
+  const { title, url, categories, type, format } = req.body
+  const updatedFields = { title, url, categories, type, format }
+  Link.findByIdAndUpdate({ _id: id }, updatedFields, { new: true }).exec(
+    function (err, updatedResource) {
+      if (err) {
+        return res.status(400).json({ error: "Can't update resource" })
+      }
+      res.json(updatedResource)
+    }
+  )
+}
+
 exports.readSingleLink = (req, res, next) => {}
-exports.removeLink = (req, res, next) => {}
+
+exports.removeLink = (req, res, next) => {
+  const { id } = req.params
+  Link.findOneAndRemove({ _id: id }).exec(function (err, data) {
+    if (err) {
+      return res.status(500).json({ error: "Could not delete link from DB" })
+    }
+    res.json({ message: "Link was successfully deleted" })
+  })
+}
