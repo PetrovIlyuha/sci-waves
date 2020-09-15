@@ -58,7 +58,15 @@ exports.updateLink = (req, res, next) => {
   )
 }
 
-exports.readSingleLink = (req, res, next) => {}
+exports.readSingleLink = (req, res, next) => {
+  const { id } = req.params
+  Link.findOne({ _id: id }).exec((err, link) => {
+    if (err) {
+      return res.status(400).json({ error: err })
+    }
+    res.json(link)
+  })
+}
 
 exports.removeLink = (req, res, next) => {
   const { id } = req.params
