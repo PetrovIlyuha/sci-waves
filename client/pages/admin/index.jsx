@@ -2,11 +2,11 @@ import React from "react"
 import Layout from "../../components/Layout"
 import withAdmin from "../withAdmin"
 import { BsFolderPlus } from "react-icons/bs"
-import { FcOpenedFolder } from "react-icons/fc"
+import { BsFillEyeFill, BsFolder } from "react-icons/bs"
 import Link from "next/link"
 
 const AdminPage = ({ user, adminLinks, token }) => {
-  console.log(adminLinks)
+  console.log(token)
   return (
     <Layout>
       <h1>Admin Dashboard</h1>
@@ -16,16 +16,53 @@ const AdminPage = ({ user, adminLinks, token }) => {
           <ul className='nav flex-column'>
             <li className='nav-item'>
               <Link href='/admin/category/create'>
-                <a className='nav-link'>
-                  <BsFolderPlus /> Create Category
+                <a
+                  className='nav-link'
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    width: 300,
+                    justiContent: "space-between",
+                  }}>
+                  <BsFolderPlus size={24} style={{ marginRight: 10 }} /> Create
+                  Category
                 </a>
               </Link>
             </li>
             <li className='nav-item d-flex'>
               <Link href='/admin/category/read'>
-                <a className='nav-link'>
-                  <FcOpenedFolder />
+                <a
+                  className='nav-link'
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    width: 300,
+                    justiContent: "space-between",
+                  }}>
+                  <BsFolder size={24} style={{ marginRight: 10 }} />
                   All Categories
+                </a>
+              </Link>
+            </li>
+            <li className='nav-item d-flex'>
+              <Link href='/admin/link/read'>
+                <a
+                  className='nav-link'
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    width: 300,
+                    justiContent: "space-between",
+                  }}>
+                  <BsFillEyeFill
+                    size={24}
+                    style={{ marginRight: 10 }}
+                    color='red'
+                  />
+                  Supervise Links
                 </a>
               </Link>
             </li>
