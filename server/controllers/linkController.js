@@ -21,14 +21,23 @@ exports.createLink = (req, res, next) => {
 }
 
 exports.getAllLinks = (req, res, next) => {
-  Link.find({}).exec((err, data) => {
-    if (err) {
-      return res
-        .status(400)
-        .json({ error: "Error getting links from database" })
-    }
-    res.json(data)
-  })
+  const { limit, skip } = req.body
+  let limitForLinks = limit ? parseInt(limit) : 10
+  let skipLinks = skip ? parseInt(skip) : 0
+  Link.find({})
+    .populate("postedBy", "name")
+    .populate("categories", "name, slug")
+    .sort({ createdAt: -1 })
+    .skip(skipLinks)
+    .limit(limitForLinks)
+    .exec((err, data) => {
+      if (err) {
+        return res
+          .status(400)
+          .json({ error: "Error getting links from database" })
+      }
+      res.json(data)
+    })
 }
 
 exports.clickCount = (req, res) => {
