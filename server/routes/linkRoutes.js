@@ -9,6 +9,7 @@ const { runValidation } = require("../validators")
 const {
   requireSignin,
   authMiddleware,
+  adminMiddleware,
 } = require("../controllers/authController")
 
 const {
@@ -29,7 +30,7 @@ router.post(
   authMiddleware,
   createLink
 )
-router.get("/links", getAllLinks)
+router.post("/links", requireSignin, adminMiddleware, getAllLinks)
 router.get("/link/:id", readSingleLink)
 router.put("/click-count", clickCount)
 router.put(

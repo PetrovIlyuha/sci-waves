@@ -12,8 +12,6 @@ import { getCookie } from "../../utils/helpers"
 import withUser from "../withUser"
 
 const UserPage = ({ user, userLinks, token }) => {
-  console.log(userLinks)
-
   const confirmDeletion = (e, id, title) => {
     e.preventDefault()
     let requestOnDeletion = window.confirm(
