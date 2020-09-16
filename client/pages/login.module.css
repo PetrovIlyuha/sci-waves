@@ -8,16 +8,18 @@
 }
 
 .loginForm {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: url("../public/static/forms-bg.jpg") no-repeat center center;
+  background: url("../public/static/forms-bg.jpg") center no-repeat;
+  opacity: 1;
   background-size: cover;
   padding: 30px 70px;
-  border-radius: 10px;
+  border-radius: 30px;
   padding: 20 40px;
-  min-height: 200px;
-  min-width: 300px;
+  min-width: 394px;
+  min-height: 427px;
   box-shadow: 2px 4px 12px rgba(255, 255, 255, 1);
   transition: all 0.3s ease;
   z-index: 10;

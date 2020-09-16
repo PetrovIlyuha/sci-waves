@@ -90,7 +90,14 @@ const Login = () => {
       <div className={classes.loginLayout}>
         {loginForm()}
         <Link href='auth/password/forgot'>
-          <a className='text-white bg-dark p-1 br-5 float-right mt-4 mr-2'>
+          <a
+            className='p-3 float-right mt-4 mr-2'
+            style={{
+              borderRadius: 20,
+              background: "linear-gradient(90deg, green, black)",
+              color: "white",
+              fontWeight: "bold",
+            }}>
             Forgot Password?
           </a>
         </Link>
