@@ -46,10 +46,15 @@ const UpdateLink = ({ oldLink, token }) => {
 
   const handleUpdateResourceLink = async e => {
     e.preventDefault()
-    console.table({ title, url, categories, type, format })
+    // console.table({ title, url, categories, type, format })
+    // url derived from user role
+    const updateURL =
+      isUserAuthenticated() && isUserAuthenticated().role === "admin"
+        ? `${API}/link/admin/${oldLink._id}`
+        : `${API}/link/${oldLink._id}`
     try {
       const response = await axios.put(
-        `${API}/link/${oldLink._id}`,
+        updateURL,
         {
           title,
           url,
