@@ -51,6 +51,26 @@ const SupervisedLinks = ({
     })
     setViewedLinks(response.data)
   }
+
+  const confirmDeletion = (e, id) => {
+    e.preventDefault()
+    let requestOnDeletion = window.confirm("Are you sure you want to delete?")
+    if (requestOnDeletion) {
+      handleLinkRemoval(id)
+    }
+  }
+
+  const handleLinkRemoval = async id => {
+    try {
+      const response = await axios.delete(`${API}/link/admin/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      console.log(`Deletion finalized`, response)
+      process.browser && window.location.reload()
+    } catch (err) {
+      console.error(`Category deletion failed with ${err}`)
+    }
+  }
   return (
     <Layout background='#FFE1C6'>
       <div className='row mt-5'></div>
@@ -69,6 +89,7 @@ const SupervisedLinks = ({
               <LinksList
                 links={viewedLinks}
                 token={token}
+                confirmDeletion={confirmDeletion}
                 handleLinkUpvote={handleLinkUpvote}
               />
             }
@@ -91,8 +112,7 @@ SupervisedLinks.getInitialProps = async ({ req }) => {
     },
     {
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjNlNjI1MGQ5MGMyYzcwYmE3YWY2Y2UiLCJpYXQiOjE2MDAyNTA3MjksImV4cCI6MTYwMDg1NTUyOX0.35EetkWf1fPduVnlHo4qSAoU1xNn1Uu0t2Pj6Ur9h1I",
+        Authorization: `Bearer ${token}`,
       },
     }
   )
