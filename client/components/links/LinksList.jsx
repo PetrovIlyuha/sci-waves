@@ -1,10 +1,12 @@
 import React from "react"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
+import Link from "next/link"
 
-const LinksList = ({ links, handleLinkUpvote }) => {
+const LinksList = ({ token, links, handleLinkUpvote, confirmDeletion }) => {
+  console.log(links[0])
   return links.map((link, index) => (
     <div
-      key={link._id}
+      key={Math.random() * 1000000}
       className='row p-3 ml-1 mr-3 bg-dark'
       style={{
         border: "2px solid lightyellow",
@@ -14,7 +16,7 @@ const LinksList = ({ links, handleLinkUpvote }) => {
       }}>
       <div
         className='col-md-8 col-sm-8'
-        onClick={() => handleLinkUpvote(link._id)}>
+        onClick={() => handleLinkUpvote(link._id, token)}>
         <a
           href={link.url}
           style={{ color: "whitesmoke", textDecoration: "none" }}
@@ -41,21 +43,35 @@ const LinksList = ({ links, handleLinkUpvote }) => {
           </span>
           by {link.postedBy.name}
         </span>
-      </div>
-      <div className='col-md-12 col-sm-12'>
-        <span className='badge '>
-          {link.type} / {link.format}
-        </span>
-        {link.categories.map((category, idx) => (
-          <span
-            key={idx}
-            style={{ color: "lightgreen", background: "darkgreen" }}
-            className='badge'>
-            {category.name}
-          </span>
-        ))}
-        <div className='badge pull-right ml-5' style={{ color: "yellow" }}>
+        <div
+          className='badge pull-right ml-5 mt-4'
+          style={{ color: "yellow", fontSize: "1.2rem" }}>
           {link.likes} <span style={{ color: "white" }}>Upvotes</span>
+        </div>
+      </div>
+      <div className='col-md-12 col-sm-12 d-flex'>
+        <div className='col-md-6 col-sm-6'>
+          <span className='badge text-white'>
+            {link.type} / {link.format}
+          </span>
+          {link.categories.map((category, idx) => (
+            <span
+              key={idx}
+              style={{ color: "lightgreen", background: "darkgreen" }}
+              className='badge'>
+              {category.name}
+            </span>
+          ))}
+        </div>
+        <div className='col-md-6 col-sm-6 d-flex'>
+          <Link href={`/user/link/${link._id}`}>
+            <a className='btn btn-secondary'>Update</a>
+          </Link>
+          <button
+            onClick={e => confirmDeletion(e, link._id)}
+            className='btn btn-danger ml-2'>
+            Delete
+          </button>
         </div>
       </div>
     </div>
