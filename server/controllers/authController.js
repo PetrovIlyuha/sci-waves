@@ -1,14 +1,15 @@
+// Models import
 const User = require("../models/User")
-const AWS = require("aws-sdk")
-const jwt = require("jsonwebtoken")
+const Link = require("../models/Link")
+
+// 3-rd party packages (utils)
 const _ = require("lodash")
 const expressJWT = require("express-jwt")
-const {
-  registerEmailParams,
-  forgotPassEmailParams,
-} = require("../utils/helperFunctions")
 const shortId = require("shortid")
+const jwt = require("jsonwebtoken")
 
+// AWS SDK import
+const AWS = require("aws-sdk")
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -17,8 +18,13 @@ AWS.config.update({
 
 const ses = new AWS.SES({ apiVersion: "2010-12-01" })
 
+const {
+  registerEmailParams,
+  forgotPassEmailParams,
+} = require("../utils/helperFunctions")
+
 exports.register = async (req, res) => {
-  const { name, email, password } = req.body
+  const { name, email, password, categories } = req.body
   // check for existing user
   await User.findOne({ email }).exec((err, user) => {
     if (user) {
@@ -28,7 +34,7 @@ exports.register = async (req, res) => {
     }
     // generating token from username, email and password
     const token = jwt.sign(
-      { name, email, password },
+      { name, email, password, categories },
       process.env.JWT_ACCOUNT_ACTIVATION_KEY,
       { expiresIn: "1h" }
     )
@@ -62,7 +68,7 @@ exports.registerActivate = (req, res) => {
         error: "Link had expired! Try to register again!",
       })
     }
-    const { name, email, password } = decoded
+    const { name, email, password, categories } = decoded
     const username = shortId.generate()
     User.findOne({ email }).exec((err, user) => {
       if (user) {
@@ -71,7 +77,7 @@ exports.registerActivate = (req, res) => {
         })
       }
       // register new user
-      const newUser = new User({ username, name, email, password })
+      const newUser = new User({ username, name, email, password, categories })
       newUser.save((err, user) => {
         if (err) {
           return res.status(401).json({
@@ -227,4 +233,21 @@ exports.resetPassword = (req, res) => {
       }
     )
   }
+}
+
+exports.canUpdateDeleteLink = (req, res, next) => {
+  const { id } = req.params
+  Link.findOne({ _id: id }).exec((err, link) => {
+    if (err) {
+      return res.status(400).json({ error: "Could not find link" })
+    }
+    let authorizedUser =
+      link.postedBy._id.toString() === req.user._id.toString()
+    if (!authorizedUser) {
+      return res
+        .status(400)
+        .json({ error: "You are not eligible to modify the resource" })
+    }
+    next()
+  })
 }
