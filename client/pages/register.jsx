@@ -12,15 +12,47 @@ const Register = () => {
     email: "",
     password: "",
     error: "",
+    loadedCategories: [],
+    categories: [],
     success: "",
     buttonText: "Register",
   })
 
-  const { name, email, password, error, success, buttonText } = formState
+  const {
+    name,
+    email,
+    password,
+    error,
+    loadedCategories,
+    categories,
+    success,
+    buttonText,
+  } = formState
+
+  useEffect(() => {
+    loadCategories()
+  }, [])
 
   useEffect(() => {
     isUserAuthenticated() && Router.push("/")
-  }, [])
+  }, [success])
+
+  const loadCategories = async () => {
+    const response = await axios.get(`${API}/categories`)
+    setFormState({ ...formState, loadedCategories: response.data })
+  }
+
+  const handleCategoryToggle = categoryID => () => {
+    const candidateCategory = categories.indexOf(categoryID)
+    console.log("Register -> candidateCategory", candidateCategory)
+    const allCategories = [...categories]
+    if (candidateCategory === -1) {
+      allCategories.push(categoryID)
+    } else {
+      allCategories.splice(candidateCategory, 1)
+    }
+    setFormState({ ...formState, categories: allCategories })
+  }
 
   const handleFormInputChange = name => e => {
     setFormState({
@@ -40,6 +72,7 @@ const Register = () => {
         name,
         email,
         password,
+        categories,
       })
       setFormState({
         ...formState,
@@ -56,6 +89,7 @@ const Register = () => {
   }
   const registerForm = () => (
     <form
+      autoComplete='off'
       onSubmit={handleFormSubmit}
       className='form-group shadow p-3 mb-5 bg-info rounded'
       style={{
@@ -103,9 +137,25 @@ const Register = () => {
 
   return (
     <Layout>
-      <div className='col-md-6 offset-md-3 col-lg-6 offset-lg-3 mt-5'>
-        {registerForm()}
+      <div className='row'>
+        <div className='col-md-6 col-lg-6 mt-2'>{registerForm()}</div>
+        <div className='col-md-4 col-lg-4 offset-2 mt-5'>
+          <h2>Choose categories to follow</h2>
+          {loadedCategories &&
+            loadedCategories.map((category, index) => (
+              <li className='list-unstyled' key={index}>
+                <input
+                  type='checkbox'
+                  onChange={handleCategoryToggle(category._id)}
+                  className='mr-2'
+                  style={{ padding: 10 }}
+                />
+                <label className='form-check-label'>{category.name}</label>
+              </li>
+            ))}
+        </div>
       </div>
+
       <Message success={success} error={error} />
     </Layout>
   )
