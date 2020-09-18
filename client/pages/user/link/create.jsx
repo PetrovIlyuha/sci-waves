@@ -4,6 +4,10 @@ import axios from "axios"
 import { API } from "../../../config"
 import Message from "../../../components/hooks/Message"
 import { getCookie, isUserAuthenticated } from "../../../utils/helpers"
+import { MdSlowMotionVideo } from "react-icons/md"
+import { AiFillAudio, AiFillBook } from "react-icons/ai"
+import { GrArticle } from "react-icons/gr"
+import { RiAirplayLine } from "react-icons/ri"
 
 const CreateLink = ({ token }) => {
   const [state, setState] = useState({
@@ -44,7 +48,6 @@ const CreateLink = ({ token }) => {
 
   const handleCreateResourceSubmit = async e => {
     e.preventDefault()
-    console.table({ title, url, categories, type, format })
     try {
       const response = await axios.post(
         `${API}/link`,
@@ -96,7 +99,9 @@ const CreateLink = ({ token }) => {
   return (
     <Layout>
       <Message success={success} error={error} />
-      <div className='row' style={{ marginTop: 100 }}>
+      <div
+        className='row'
+        style={{ marginTop: 100, height: "100%", overflow: "hidden" }}>
         <div className='col-md-12'>
           <h2 className='text-center'>Create New Resource Link</h2>
           <br />
@@ -158,7 +163,7 @@ const CreateLink = ({ token }) => {
               <div className='form-group'>
                 <h3>Format</h3>
                 <div className='form-check ml-5'>
-                  <label className='form-check-label'>
+                  <label className='form-check-label d-flex flex-row align-items-center justify-content-between'>
                     <input
                       type='radio'
                       onChange={handleFormatCheck}
@@ -167,11 +172,11 @@ const CreateLink = ({ token }) => {
                       name='format'
                       className='form-check-input'
                     />
-                    Video
+                    Video <MdSlowMotionVideo color='teal' size={22} />
                   </label>
                 </div>
                 <div className='form-check ml-5'>
-                  <label className='form-check-label'>
+                  <label className='form-check-label d-flex flex-row align-items-center justify-content-between'>
                     <input
                       type='radio'
                       onChange={handleFormatCheck}
@@ -180,11 +185,11 @@ const CreateLink = ({ token }) => {
                       name='format'
                       className='form-check-input'
                     />
-                    Audio
+                    Audio / Podcast <AiFillAudio color='green' size={22} />
                   </label>
                 </div>
                 <div className='form-check ml-5'>
-                  <label className='form-check-label'>
+                  <label className='form-check-label d-flex flex-row align-items-center justify-content-between'>
                     <input
                       type='radio'
                       onChange={handleFormatCheck}
@@ -193,7 +198,33 @@ const CreateLink = ({ token }) => {
                       name='format'
                       className='form-check-input'
                     />
-                    Book
+                    Book <AiFillBook color='red' size={22} />
+                  </label>
+                </div>
+                <div className='form-check ml-5'>
+                  <label className='form-check-label d-flex flex-row align-items-center justify-content-between'>
+                    <input
+                      type='radio'
+                      onChange={handleFormatCheck}
+                      checked={format === "article"}
+                      value='article'
+                      name='format'
+                      className='form-check-input'
+                    />
+                    Article / Blogpost <GrArticle color='orange' size={22} />
+                  </label>
+                </div>
+                <div className='form-check ml-5'>
+                  <label className='form-check-label d-flex flex-row align-items-center justify-content-between'>
+                    <input
+                      type='radio'
+                      onChange={handleFormatCheck}
+                      checked={format === "interactive"}
+                      value='interactive'
+                      name='format'
+                      className='form-check-input'
+                    />
+                    Interactive <RiAirplayLine color='blue' size={22} />
                   </label>
                 </div>
               </div>
