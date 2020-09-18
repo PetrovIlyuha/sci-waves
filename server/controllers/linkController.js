@@ -1,5 +1,18 @@
-const Link = require("../models/Link")
 const slugify = require("slugify")
+const Category = require("../models/Category")
+
+const Link = require("../models/Link")
+const User = require("../models/User")
+const { linkPublishedParams } = require("../utils/helperFunctions")
+
+const AWS = require("aws-sdk")
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION,
+})
+
+const ses = new AWS.SES({ apiVersion: "2010-12-01" })
 
 exports.createLink = (req, res, next) => {
   const { title, url, categories, type, format } = req.body
@@ -17,6 +30,33 @@ exports.createLink = (req, res, next) => {
       return res.status(400).json({ error: "Link already Exist in Database!" })
     }
     res.status(200).json(data)
+    // find all users who have chosen the category link as favorite
+    User.find({ categories: { $in: categories } }).exec((err, users) => {
+      if (err) {
+        return res
+          .status(400)
+          .send(
+            "Could not find user's with the preference for this category..."
+          )
+      }
+      Category.find({ _id: { $in: categories } }).exec(function (err, result) {
+        data.categories = result
+        for (const user of users) {
+          console.log("Email will be sent to", user.email)
+          const params = linkPublishedParams(user, data)
+          const sendEmail = ses.sendEmail(params).promise()
+          sendEmail
+            .then(success => {
+              console.log("Email new link notification success", success)
+              return
+            })
+            .catch(failure => {
+              console.log("Email new link notification failure", failure)
+              return
+            })
+        }
+      })
+    })
   })
 }
 
@@ -26,7 +66,7 @@ exports.getAllLinks = (req, res, next) => {
   let skipLinks = skip ? parseInt(skip) : 0
   Link.find({})
     .populate("postedBy", "name")
-    .populate("categories", "name, slug")
+    .populate("categories", "name slug")
     .sort({ createdAt: -1 })
     .skip(skipLinks)
     .limit(limitForLinks)
