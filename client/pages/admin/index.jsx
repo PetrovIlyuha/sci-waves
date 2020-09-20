@@ -3,6 +3,8 @@ import Layout from "../../components/Layout"
 import withAdmin from "../withAdmin"
 import { BsFolderPlus } from "react-icons/bs"
 import { BsFillEyeFill, BsFolder } from "react-icons/bs"
+import { FaBuffer } from "react-icons/fa"
+
 import Link from "next/link"
 
 const AdminPage = ({ user, adminLinks, token }) => {
@@ -63,6 +65,26 @@ const AdminPage = ({ user, adminLinks, token }) => {
                     color='red'
                   />
                   Supervise Links
+                </a>
+              </Link>
+            </li>
+            <li className='nav-item d-flex'>
+              <Link href='/user/profile/update'>
+                <a
+                  className='nav-link'
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    width: 300,
+                    justiContent: "space-between",
+                  }}>
+                  <FaBuffer
+                    size={24}
+                    style={{ marginRight: 10 }}
+                    color='green'
+                  />
+                  Profile Settings
                 </a>
               </Link>
             </li>
