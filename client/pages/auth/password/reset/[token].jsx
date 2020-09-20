@@ -28,7 +28,6 @@ const ResetPassword = ({ router }) => {
       })
     }
   }, [])
-  console.log(token)
 
   useEffect(() => {
     {
