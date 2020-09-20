@@ -81,3 +81,15 @@ export const logOutUser = () => {
     removeCookie("token")
   }
 }
+
+// update user profile in LS
+export const updateUserInLocalStorage = (user, next) => {
+  if (process.browser) {
+    if (localStorage.getItem("user")) {
+      let authorizedUser = JSON.parse(localStorage.getItem("user"))
+      authorizedUser = user
+      localStorage.setItem("user", JSON.stringify(authorizedUser))
+      next()
+    }
+  }
+}
