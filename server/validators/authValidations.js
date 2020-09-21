@@ -29,3 +29,7 @@ exports.resetPassValidator = [
     .withMessage("Password must be no less than 6 characters!"),
   check("resetPasswordLink").not().isEmpty().withMessage("Token is required!"),
 ]
+
+exports.userUpdateValidator = [
+  check("name").not().isEmpty().withMessage("Name is the required field"),
+]
