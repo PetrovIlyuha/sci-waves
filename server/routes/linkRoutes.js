@@ -20,6 +20,8 @@ const {
   updateLink,
   readSingleLink,
   removeLink,
+  popularLinks,
+  popularInCategory,
 } = require("../controllers/linkController")
 
 // routes for linkSchema
@@ -59,4 +61,9 @@ router.delete(
   removeLink
 )
 router.delete("/link/admin/:id", requireSignin, adminMiddleware, removeLink)
+
+// Top links by number of likes (votes)
+router.get("/links/top", popularLinks)
+
+router.get("/link/popular/:slug", popularInCategory)
 module.exports = router
