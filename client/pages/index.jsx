@@ -81,7 +81,9 @@ const Home = ({ categories }) => {
       </div>
       <div className='row mt-4'>
         <div className='col-md-12 col-sm-12'>
-          <h2 className='font-weight-bold pb-3 text-center'>Popular</h2>
+          <h2 className='font-weight-bold pb-3 text-center'>
+            Popular Resources
+          </h2>
           {topLinks &&
             topLinks.map(link => (
               <div
