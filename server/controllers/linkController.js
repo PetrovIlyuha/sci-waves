@@ -89,6 +89,7 @@ exports.clickCount = (req, res) => {
           .status(400)
           .json({ error: "Could not update link's likes count" })
       }
+      console.log(data)
       res.json(data)
     }
   )
@@ -124,5 +125,39 @@ exports.removeLink = (req, res, next) => {
       return res.status(500).json({ error: "Could not delete link from DB" })
     }
     res.json({ message: "Link was successfully deleted" })
+  })
+}
+
+exports.popularLinks = (req, res) => {
+  // get most popular links
+
+  Link.find()
+    .populate("postedBy", "name")
+    .sort({ likes: -1 })
+    .limit(3)
+    .exec((err, links) => {
+      if (err) {
+        return res.status(400).json({ error: "Links not found" })
+      }
+      res.json(links)
+    })
+}
+
+exports.popularInCategory = (req, res) => {
+  // most popular in category
+  const { slug } = req.params
+  Category.findOne({ slug }).exec((err, category) => {
+    if (err) {
+      return res.status(400).json({ error: "Category load failed" })
+    }
+    Link.find({ categories: category })
+      .sort({ likes: -1 })
+      .limit(3)
+      .exec((err, links) => {
+        if (err) {
+          return res.status(400).json({ error: "Links not found" })
+        }
+        res.json(links)
+      })
   })
 }
