@@ -3,7 +3,6 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow"
 import Link from "next/link"
 
 const LinksList = ({ token, links, handleLinkUpvote, confirmDeletion }) => {
-  console.log(links[0])
   return links.map((link, index) => (
     <div
       key={Math.random() * 1000000}
