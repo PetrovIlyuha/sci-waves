@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import axios from "axios"
 import InfiniteScroll from "react-infinite-scroller"
 import renderHTML from "react-render-html"
@@ -9,6 +9,7 @@ import { API } from "../../config"
 import LinksList from "../../components/links/LinksList"
 import CategoryDescription from "../../components/category/CategoryDescription"
 import CategoryImage from "../../components/category/CategoryImage"
+import Link from "next/link"
 
 const LinksForCategory = ({
   query,
@@ -23,10 +24,20 @@ const LinksForCategory = ({
   const [skip, setSkip] = useState(linkSkip)
   const [size, setSize] = useState(totalLinks)
   const [loading, setLoading] = useState(false)
+  const [top, setTop] = useState([])
+  console.log(top)
+
+  useEffect(() => {
+    loadTopLinksInCategory()
+  }, [])
+
+  const loadTopLinksInCategory = async () => {
+    const response = await axios.get(`${API}/link/popular/${category.slug}`)
+    setTop(response.data)
+  }
 
   const handleLinkUpvote = async linkId => {
-    const response = await axios.put(`${API}/click-count`, { linkId })
-    console.log(size)
+    await axios.put(`${API}/click-count`, { linkId })
     loadUpdatedResources()
   }
 
@@ -74,7 +85,23 @@ const LinksForCategory = ({
           </InfiniteScroll>
         </div>
         <div className='col-md-4 col-sm-4'>
-          <h2 className='lead'>Top in category</h2>
+          <h2 className='lead text-center'>Top in category</h2>
+          {top.map(link => (
+            <div
+              onClick={() => handleLinkUpvote(link._id)}
+              to={`/`}
+              className='bg-dark text-white p-4 mt-3 rounded shadow'>
+              <a
+                target='_blank'
+                style={{ color: "lightyellow", textDecoration: "underline" }}
+                href={link.url}>
+                {link.title}
+              </a>
+              <h2 className='pull-right'>
+                {link.likes} <span style={{ fontSize: "0.8rem" }}>upvotes</span>
+              </h2>
+            </div>
+          ))}
         </div>
       </div>
     </Layout>
